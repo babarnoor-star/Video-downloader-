@@ -1,40 +1,58 @@
 async function analyzeVideo() {
-    console.log("Button Clicked!"); // Check karne ke liye ke button kaam kar raha hai
-    
-    const urlInput = document.getElementById('urlInput').value;
+    const urlInput = document.getElementById('urlInput').value.trim();
     const btnText = document.getElementById('btnText');
     const resultDiv = document.getElementById('result');
     const downloadButtons = document.getElementById('downloadButtons');
-    const videoTitle = document.getElementById('videoTitle');
 
     if (!urlInput) {
-        alert("Pehle video ka link paste karein!");
+        alert("Please paste a link first!");
         return;
     }
 
-    // Loading State Start
-    btnText.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Analyzing...';
+    // Button status change
+    btnText.innerHTML = '<span>Searching...</span>';
+    btnText.style.opacity = "0.5";
     btnText.style.pointerEvents = "none";
-    btnText.style.opacity = "0.7";
 
     const options = {
-        method: 'POST',
+        method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'x-rapidapi-host': 'social-download-all-in-one.p.rapidapi.com',
-            'x-rapidapi-key': '0733c17d56mshbb4fd563fb1aad0p15cca4jsnb616ddd8461e'
-        },
-        body: JSON.stringify({ url: urlInput })
+            'x-rapidapi-key': '0733c17d56mshbb4fd563fb1aad0p15cca4jsnb616ddd8461e',
+            'x-rapidapi-host': 'social-download-all-in-one.p.rapidapi.com'
+        }
     };
 
     try {
-        console.log("Fetching API...");
-        const response = await fetch('https://social-download-all-in-one.p.rapidapi.com/v1/social/autolink', options);
+        // Humne URL ko encode kiya hai taake error na aaye
+        const apiUrl = `https://social-download-all-in-one.p.rapidapi.com/v1/social/autolink?url=${encodeURIComponent(urlInput)}`;
+        
+        const response = await fetch(apiUrl, options);
         const data = await response.json();
-        console.log("API Data Received:", data);
 
-        if (data && data.medias && data.medias.length > 0) {
-            videoTitle.innerText = data.title || "Video Found!";
+        if (data && data.medias) {
+            resultDiv.classList.remove('hidden');
+            downloadButtons.innerHTML = ''; // Clear old buttons
+
+            data.medias.forEach(media => {
+                const a = document.createElement('a');
+                a.href = media.url;
+                a.target = "_blank";
+                a.className = "w-full py-3 mb-2 bg-cyan-600 text-white rounded-lg font-bold text-center block hover:bg-cyan-500 transition-all";
+                a.innerText = `Download ${media.quality} (${media.extension})`;
+                downloadButtons.appendChild(a);
+            });
+        } else {
+            alert("Video not found. Try a different link.");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("API Error! Please check your RapidAPI dashboard.");
+    } finally {
+        btnText.innerHTML = '<i class="fa-solid fa-bolt"></i> Analyze Link';
+        btnText.style.opacity = "1";
+        btnText.style.pointerEvents = "auto";
+    }
+}            videoTitle.innerText = data.title || "Video Found!";
             downloadButtons.innerHTML = ''; // Purane buttons clear karna
             resultDiv.classList.remove('hidden');
 
