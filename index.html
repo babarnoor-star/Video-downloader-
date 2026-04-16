@@ -131,29 +131,35 @@
     </main>
 
     <script>
-    // 1-Click Force Download Function
-    async function startDownload(url, filename, btn) {
-        const originalContent = btn.innerHTML;
+    // 1-Click Force Download Function (NO NEXT PAGE)
+    async function startDownload(videoUrl, filename, button) {
+        const originalHtml = button.innerHTML;
+        button.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-2"></i> Fetching...';
+        button.style.pointerEvents = 'none';
+
         try {
-            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-2"></i> Downloading...';
-            btn.style.pointerEvents = "none";
-            
-            const response = await fetch(url);
+            // Video fetch karte hain background mein
+            const response = await fetch(videoUrl);
             const blob = await response.blob();
-            const blobUrl = window.URL.createObjectURL(blob);
+            const url = window.URL.createObjectURL(blob);
             
+            // Temporary link bana kar click karwate hain
             const a = document.createElement('a');
-            a.href = blobUrl;
-            a.download = filename || 'video.mp4';
+            a.style.display = 'none';
+            a.href = url;
+            a.download = filename || 'fast_video_download.mp4';
             document.body.appendChild(a);
             a.click();
+            
+            // Clean up
+            window.URL.revokeObjectURL(url);
             document.body.removeChild(a);
-            window.URL.revokeObjectURL(blobUrl);
-        } catch (e) {
-            window.open(url, '_blank');
+        } catch (error) {
+            // Backup: Agar fetch block ho jaye (CORS issue), toh naye tab mein khol dein
+            window.open(videoUrl, '_blank');
         } finally {
-            btn.innerHTML = originalContent;
-            btn.style.pointerEvents = "auto";
+            button.innerHTML = originalHtml;
+            button.style.pointerEvents = 'auto';
         }
     }
 
@@ -191,11 +197,13 @@
 
                 res.medias.forEach((item, index) => {
                     const isHD = item.quality.includes('1080') || item.quality.includes('4K');
+                    const fileName = `video_${index}_${item.quality}.mp4`;
+                    
                     downloadButtons.innerHTML += `
-                        <button onclick="startDownload('${item.url}', 'video_${index}.mp4', this)" 
+                        <button onclick="startDownload('${item.url}', '${fileName}', this)" 
                            class="w-full py-5 ${isHD ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'bg-white/5 text-white border border-white/10'} rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex justify-between px-8 items-center group">
                             <span>${item.quality} ${item.extension.toUpperCase()}</span>
-                            <i class="fa-solid fa-circle-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                            <i class="fa-solid fa-circle-arrow-down group-hover:translate-y-1 transition-transform text-lg"></i>
                         </button>
                     `;
                 });
