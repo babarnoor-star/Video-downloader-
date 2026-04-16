@@ -3,39 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Video Downloader | Download in 4K</title>
+    <title>SaveVid | Professional Video Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #0f0c29; background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); min-height: 100vh; color: white; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; }
-        .glow-btn { transition: 0.3s; background: linear-gradient(45deg, #6a11cb, #2575fc); }
-        .glow-btn:hover { box-shadow: 0 0 20px rgba(37, 117, 252, 0.6); transform: scale(1.02); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #8A2BE2, #00D2FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+        }
+
+        .nav-link:hover { color: #00D2FF; transition: 0.3s; }
+
+        /* Background animation */
+        .bg-blob {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            filter: blur(50px);
+        }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center p-4">
+<body>
 
-    <div class="glass p-8 w-full max-w-lg text-center shadow-2xl">
-        <h1 class="text-4xl font-bold mb-2">Download <span class="text-blue-400">Any Video</span></h1>
-        <p class="text-gray-400 mb-8">TikTok, Instagram, YouTube & 1000+ Sites</p>
+    <div class="bg-blob" style="top: -100px; right: -100px;"></div>
+    <div class="bg-blob" style="bottom: -100px; left: -100px;"></div>
 
-        <div class="relative mb-6">
-            <input type="text" id="urlInput" placeholder="Paste link here..." 
-            class="w-full p-4 rounded-full bg-black/40 border border-gray-700 focus:border-blue-500 outline-none text-white">
+    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto w-full">
+        <div class="text-2xl font-extrabold tracking-tighter">SAVE<span class="text-blue-500">VID</span></div>
+        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">How it works</a>
+            <a href="#" class="nav-link">Supported Sites</a>
+            <a href="#" class="nav-link">API</a>
+        </div>
+        <button class="bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition">Contact Us</button>
+    </nav>
+
+    <main class="flex flex-col items-center justify-center pt-20 pb-10 px-4">
+        <div class="text-center max-w-3xl">
+            <span class="bg-blue-500/10 text-blue-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-blue-500/20">
+                1000+ Platforms Supported
+            </span>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                Download <span class="gradient-text">Any Video</span> In Seconds.
+            </h1>
+            <p class="text-gray-400 text-lg mb-10">High-speed downloads for TikTok, Instagram, YouTube, and more. No watermarks, no limits, just pure 4K quality.</p>
         </div>
 
-        <button onclick="analyzeVideo()" id="btnText" class="glow-btn w-full p-4 rounded-full font-bold text-lg">
-            Analyze Video
-        </button>
+        <div class="glass-card p-2 w-full max-w-2xl flex flex-col md:flex-row gap-2 neon-glow">
+            <input type="text" id="urlInput" placeholder="Paste video link here..." 
+                   class="flex-1 bg-transparent p-4 outline-none text-white text-lg placeholder:text-gray-600">
+            <button onclick="analyzeVideo()" id="btnText" class="bg-gradient-to-r from-purple-600 to-blue-600 px-10 py-4 rounded-xl font-bold text-white hover:opacity-90 transition shadow-lg">
+                <i class="fa-solid fa-bolt mr-2"></i> Analyze
+            </button>
+        </div>
 
-        <div id="result" class="mt-8 hidden">
-            <div class="p-4 border border-dashed border-gray-600 rounded-lg">
-                <p id="videoTitle" class="font-semibold mb-3 italic"></p>
-                <a id="downloadLink" href="#" target="_blank" class="text-green-400 font-bold underline">Download Now (High Quality)</a>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-5xl w-full text-center">
+            <div class="glass-card p-6">
+                <i class="fa-solid fa-gauge-high text-blue-500 text-2xl mb-3"></i>
+                <h3 class="font-bold">Fast Speed</h3>
+            </div>
+            <div class="glass-card p-6">
+                <i class="fa-solid fa-shield-halved text-purple-500 text-2xl mb-3"></i>
+                <h3 class="font-bold">100% Secure</h3>
+            </div>
+            <div class="glass-card p-6">
+                <i class="fa-solid fa-video text-green-500 text-2xl mb-3"></i>
+                <h3 class="font-bold">4K Quality</h3>
+            </div>
+            <div class="glass-card p-6">
+                <i class="fa-solid fa-infinity text-orange-500 text-2xl mb-3"></i>
+                <h3 class="font-bold">Unlimited</h3>
             </div>
         </div>
-    </div>
 
-    <p class="mt-10 text-gray-500 text-sm">© 2026 FastVideoDownload.net - Free & Unlimited</p>
+        <div id="result" class="mt-12 hidden w-full max-w-xl">
+            <div class="glass-card p-6 border-blue-500/50 border">
+                <div class="flex items-center gap-4">
+                    <div class="w-20 h-20 bg-gray-800 rounded-lg animate-pulse" id="videoThumb"></div>
+                    <div class="flex-1">
+                        <p id="videoTitle" class="font-bold text-lg mb-2 italic">Fetching video details...</p>
+                        <div id="downloadButtons" class="flex gap-2">
+                             </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-20 border-t border-gray-900 py-10 w-full text-center">
+        <div class="flex justify-center gap-6 mb-6">
+            <i class="fa-brands fa-youtube text-gray-500 text-xl cursor-pointer hover:text-white"></i>
+            <i class="fa-brands fa-tiktok text-gray-500 text-xl cursor-pointer hover:text-white"></i>
+            <i class="fa-brands fa-instagram text-gray-500 text-xl cursor-pointer hover:text-white"></i>
+        </div>
+        <p class="text-gray-600 text-sm">© 2026 SAVEVID INC. All rights reserved.</p>
+        <p class="text-xs text-gray-700 mt-2 italic px-4">This tool is for personal use only. Please respect copyright laws.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
