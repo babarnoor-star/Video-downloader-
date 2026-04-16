@@ -3,30 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAST VIDEO | Pro Downloader</title>
+    <title>FAST VIDEO | High Speed Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Inter:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@300;400;700&display=swap');
         
         body { 
             font-family: 'Inter', sans-serif;
-            background-color: #050505;
+            background-color: #030303;
             color: white;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        .brand-font { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+        .brand-font { font-family: 'Orbitron', sans-serif; letter-spacing: 2px; }
 
-        /* Compact Rainbow Button */
+        /* Unique Rainbow Animated Button */
         .unique-btn {
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: gradient 5s ease infinite;
-            transition: 0.4s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: none;
+            transition: 0.5s;
         }
 
         @keyframes gradient {
@@ -35,6 +33,70 @@
             100% { background-position: 0% 50%; }
         }
 
+        .unique-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(35, 166, 213, 0.4);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .glass-input:focus {
+            border-color: #23a6d5;
+            box-shadow: 0 0 15px rgba(35, 166, 213, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-glow { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+    </style>
+</head>
+<body class="flex flex-col">
+
+    <nav class="flex justify-between items-center px-6 py-5 max-w-7xl mx-auto w-full">
+        <div class="brand-font text-2xl font-black italic nav-glow">
+            FAST <span class="text-cyan-400 text-3xl">VIDEO</span>
+        </div>
+        <div class="hidden md:flex gap-6 text-xs uppercase tracking-widest font-bold text-gray-400">
+            <a href="#" class="hover:text-cyan-400 transition">Downloader</a>
+            <a href="#" class="hover:text-cyan-400 transition">Features</a>
+            <a href="#" class="hover:text-cyan-400 transition">Contact</a>
+        </div>
+    </nav>
+
+    <main class="flex-1 flex flex-col items-center justify-center px-4 text-center mt-10">
+        <h1 class="text-6xl md:text-8xl font-black mb-4 brand-font leading-tight">
+            INSTANT <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">DOWNLOAD.</span>
+        </h1>
+        <p class="text-gray-500 max-w-md mb-10 font-medium">Copy the link and let our AI engine handle the rest. Pure quality, zero lag.</p>
+
+        <div class="w-full max-w-2xl space-y-4">
+            <input type="text" id="urlInput" placeholder="Paste URL (YouTube, TikTok, Insta...)" 
+                   class="w-full glass-input p-5 rounded-2xl outline-none text-lg text-center font-bold">
+            
+            <button onclick="analyzeVideo()" id="btnText" class="unique-btn w-full py-5 rounded-2xl font-black text-xl uppercase tracking-widest">
+                <i class="fa-solid fa-bolt-lightning mr-2"></i> Start Analyzing
+            </button>
+        </div>
+
+        <div id="result" class="mt-10 hidden w-full max-w-xl animate-bounce">
+            <div class="bg-white/10 p-6 rounded-3xl border border-white/20 backdrop-blur-md">
+                <p id="videoTitle" class="text-cyan-400 font-bold mb-4 italic text-xl uppercase">Link Detected!</p>
+                <div id="downloadButtons">
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-10 text-center text-gray-600 text-[10px] tracking-[4px] uppercase font-bold">
+        Built for Creators • FAST VIDEO © 2026
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
         .unique-btn:active { transform: scale(0.95); }
 
         .glass-input {
