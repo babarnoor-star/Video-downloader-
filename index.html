@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Video Downloader | Download in 4K</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0f0c29; background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); min-height: 100vh; color: white; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; }
+        .glow-btn { transition: 0.3s; background: linear-gradient(45deg, #6a11cb, #2575fc); }
+        .glow-btn:hover { box-shadow: 0 0 20px rgba(37, 117, 252, 0.6); transform: scale(1.02); }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-4">
+
+    <div class="glass p-8 w-full max-w-lg text-center shadow-2xl">
+        <h1 class="text-4xl font-bold mb-2">Download <span class="text-blue-400">Any Video</span></h1>
+        <p class="text-gray-400 mb-8">TikTok, Instagram, YouTube & 1000+ Sites</p>
+
+        <div class="relative mb-6">
+            <input type="text" id="urlInput" placeholder="Paste link here..." 
+            class="w-full p-4 rounded-full bg-black/40 border border-gray-700 focus:border-blue-500 outline-none text-white">
+        </div>
+
+        <button onclick="analyzeVideo()" id="btnText" class="glow-btn w-full p-4 rounded-full font-bold text-lg">
+            Analyze Video
+        </button>
+
+        <div id="result" class="mt-8 hidden">
+            <div class="p-4 border border-dashed border-gray-600 rounded-lg">
+                <p id="videoTitle" class="font-semibold mb-3 italic"></p>
+                <a id="downloadLink" href="#" target="_blank" class="text-green-400 font-bold underline">Download Now (High Quality)</a>
+            </div>
+        </div>
+    </div>
+
+    <p class="mt-10 text-gray-500 text-sm">© 2026 FastVideoDownload.net - Free & Unlimited</p>
+
+    <script src="script.js"></script>
+</body>
+</html>
