@@ -1,0 +1,9 @@
+{
+  "name": "fast-video-downloader",
+  "version": "1.0.0",
+  "description": "Video Downloader Tool",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  }
+}
