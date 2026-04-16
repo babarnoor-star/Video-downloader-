@@ -52,32 +52,4 @@ async function analyzeVideo() {
         btnText.style.opacity = "1";
         btnText.style.pointerEvents = "auto";
     }
-}            videoTitle.innerText = data.title || "Video Found!";
-            downloadButtons.innerHTML = ''; // Purane buttons clear karna
-            resultDiv.classList.remove('hidden');
-
-            data.medias.forEach(media => {
-                const btn = document.createElement('a');
-                btn.href = media.url;
-                btn.target = "_blank";
-                btn.className = "w-full py-3 bg-white/10 hover:bg-cyan-500 hover:text-black border border-white/10 rounded-xl font-bold text-center transition-all flex items-center justify-center gap-2 mb-2 no-underline text-white";
-                btn.innerHTML = `<i class="fa-solid fa-download"></i> Download ${media.quality || ''} (${media.extension || 'Link'})`;
-                downloadButtons.appendChild(btn);
-            });
-            
-            // Result section ko scroll karke dikhana
-            resultDiv.scrollIntoView({ behavior: 'smooth' });
-
-        } else {
-            alert("No download links found. Please try another link.");
-        }
-    } catch (error) {
-        console.error("API Error:", error);
-        alert("Server error! Please check your internet or API subscription.");
-    } finally {
-        // Reset Button
-        btnText.innerHTML = '<i class="fa-solid fa-bolt"></i> Start Analyzing';
-        btnText.style.pointerEvents = "auto";
-        btnText.style.opacity = "1";
-    }
-}
+}                
