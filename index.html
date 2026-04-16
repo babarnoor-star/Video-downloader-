@@ -3,71 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAST VIDEO | Premium Downloader</title>
+    <title>FAST VIDEO | Professional 4K Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Inter:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
         
         body { 
-            font-family: 'Inter', sans-serif;
-            background-color: #030303;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at top, #1a1a2e 0%, #050505 100%);
             color: white;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
         }
 
-        .brand-font { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+        .brand-font { font-family: 'Orbitron', sans-serif; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-        /* Unique Rainbow Animated Button */
-        .unique-btn {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        /* Rainbow Moving Button */
+        .btn-rainbow {
+            background: linear-gradient(-45deg, #FF3D00, #FFD600, #00E676, #00B0FF, #D500F9);
             background-size: 400% 400%;
-            animation: gradient 5s ease infinite;
-            border: none;
-            transition: 0.5s;
-            box-shadow: 0 4px 15px rgba(35, 166, 213, 0.3);
+            animation: gradientMove 6s ease infinite;
+            transition: 0.3s;
         }
 
-        @keyframes gradient {
+        @keyframes gradientMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        .unique-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(35, 166, 213, 0.5);
-        }
-
-        .unique-btn:active { transform: scale(0.97); }
-
-        /* Glassmorphism Input */
-        .glass-input {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
+        .platform-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 11px;
+            color: #9ca3af;
             transition: 0.3s;
         }
 
-        .glass-input:focus {
-            border-color: #23a6d5;
-            box-shadow: 0 0 15px rgba(35, 166, 213, 0.3);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        /* Subtle Background Glows */
-        .bg-glow {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-            z-index: -1;
-            filter: blur(60px);
+        .platform-badge:hover {
+            border-color: #22d3ee;
+            color: white;
+            background: rgba(34, 211, 238, 0.1);
         }
     </style>
+</head>
+<body class="flex flex-col">
+
+    <header class="w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="bg-cyan-500 p-2 rounded-lg shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                <i class="fa-solid fa-download text-black"></i>
+            </div>
+            <span class="brand-font text-xl font-black italic tracking-tighter">FAST <span class="text-cyan-400">VIDEO</span></span>
+        </div>
+        <div class="flex gap-4">
+            <i class="fa-solid fa-clock-rotate-left text-gray-500 text-lg"></i>
+            <i class="fa-solid fa-grid-2 text-gray-500 text-lg"></i>
+        </div>
+    </header>
+
+    <main class="flex-1 flex flex-col items-center px-6 pt-10 pb-20">
+        
+        <div class="glass px-4 py-1.5 rounded-full flex items-center gap-2 mb-8 animate-pulse">
+            <i class="fa-solid fa-wand-magic-sparkles text-cyan-400 text-xs"></i>
+            <span class="text-[10px] font-bold uppercase tracking-[2px]">1000+ Supported Platforms</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold text-center leading-tight mb-4">
+            Download <br> 
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Any Video.</span>
+        </h1>
+        <p class="text-gray-400 text-center text-sm max-w-sm mb-10 leading-relaxed">
+            Paste a URL from YouTube, TikTok, Instagram, or any other site. Get the best quality in seconds.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-2 max-w-md mb-12">
+            <span class="platform-badge">YouTube</span>
+            <span class="platform-badge">TikTok</span>
+            <span class="platform-badge">Instagram</span>
+            <span class="platform-badge">Twitter</span>
+            <span class="platform-badge">Facebook</span>
+            <span class="platform-badge">Reddit</span>
+            <span class="platform-badge">+ Many more</span>
+        </div>
+
+        <div class="w-full max-w-lg glass p-6 rounded-[32px] shadow-2xl">
+            <div class="relative mb-4">
+                <i class="fa-solid fa-link absolute left-5 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                <input type="text" id="urlInput" placeholder="Paste video URL here..." 
+                    class="w-full bg-black/40 border border-white/10 p-5 pl-14 rounded-2xl outline-none focus:border-cyan-400 transition-all text-sm">
+            </div>
+
+            <button onclick="analyzeVideo()" id="btnText" class="btn-rainbow w-full py-5 rounded-2xl font-black text-sm uppercase tracking-widest text-white shadow-lg flex items-center justify-center gap-2">
+                <i class="fa-solid fa-bolt"></i> Analyze Link
+            </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-8 mt-16 text-center w-full max-w-md">
+            <div>
+                <p class="text-2xl font-black text-white brand-font">1000+</p>
+                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Platforms</p>
+            </div>
+            <div>
+                <p class="text-2xl font-black text-white brand-font">4K</p>
+                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Max Quality</p>
+            </div>
+            <div>
+                <p class="text-2xl font-black text-white brand-font">Free</p>
+                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Always</p>
+            </div>
+        </div>
+
+        <div id="result" class="mt-12 hidden w-full max-w-lg">
+            <div class="bg-cyan-500/10 border border-cyan-500/30 p-6 rounded-3xl backdrop-blur-md">
+                <p id="videoTitle" class="text-cyan-400 font-bold mb-4 text-center text-xs uppercase tracking-tighter">Ready to Download</p>
+                <div id="downloadButtons" class="flex flex-col gap-3"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="py-8 border-t border-white/5 flex flex-col items-center">
+        <div class="flex gap-6 mb-4 text-gray-600">
+            <i class="fa-brands fa-instagram hover:text-white transition"></i>
+            <i class="fa-brands fa-youtube hover:text-white transition"></i>
+            <i class="fa-brands fa-twitter hover:text-white transition"></i>
+        </div>
+        <p class="text-gray-700 text-[10px] font-bold tracking-[5px] uppercase">Fast Video Downloader © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+</style>
 </head>
 <body>
 
