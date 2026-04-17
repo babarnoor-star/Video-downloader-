@@ -20,7 +20,12 @@
         }
 
         .brand-font { font-family: 'Orbitron', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
         .rainbow-text {
             background: linear-gradient(to right, #FF3D00, #FFD600, #00E676, #00B0FF, #D500F9);
@@ -43,7 +48,10 @@
             100% { background-position: 0% 50%; }
         }
 
-        .premium-border { border-bottom: 1px solid transparent; border-image: linear-gradient(to right, transparent, #22d3ee, transparent) 1; }
+        .premium-border {
+            border-bottom: 1px solid transparent;
+            border-image: linear-gradient(to right, transparent, #22d3ee, transparent) 1;
+        }
     </style>
 </head>
 <body class="flex flex-col">
@@ -58,49 +66,91 @@
             </div>
             <span class="text-[9px] font-bold text-gray-500 uppercase tracking-[4px] ml-9">Downloader</span>
         </div>
+        <div class="flex gap-4 opacity-50">
+            <i class="fa-solid fa-shield-halved text-cyan-400"></i>
+            <i class="fa-solid fa-crown text-yellow-500"></i>
+        </div>
     </header>
 
     <main class="flex-1 flex flex-col items-center px-6 pt-12 pb-20">
+        
+        <div class="glass px-5 py-2 rounded-full flex items-center gap-2 mb-8 border-cyan-500/20">
+            <span class="text-[10px] font-black uppercase tracking-[3px] rainbow-text">Pro 4K Technology</span>
+        </div>
+
         <h1 class="text-5xl md:text-7xl font-black text-center leading-[0.9] mb-6 tracking-tighter uppercase">
             Fast Video <br> 
             <span class="italic rainbow-text">Downloader Pro.</span>
         </h1>
 
-        <div class="w-full max-w-lg glass p-7 rounded-[40px] shadow-2xl">
-            <input type="text" id="urlInput" placeholder="Paste link here..." 
-                class="w-full bg-black/60 border border-white/5 p-5 rounded-3xl outline-none focus:border-cyan-500/30 mb-5 text-sm">
+        <div class="w-full max-w-lg glass p-7 rounded-[40px] shadow-2xl relative">
+            <div class="relative mb-5 group">
+                <i class="fa-solid fa-link absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-cyan-400 transition-all"></i>
+                <input type="text" id="urlInput" placeholder="Paste link here..." 
+                    class="w-full bg-black/60 border border-white/5 p-5 pl-14 rounded-3xl outline-none focus:border-cyan-500/30 transition-all text-sm">
+            </div>
 
-            <button onclick="analyzeVideo()" id="btnText" class="btn-rainbow w-full py-6 rounded-3xl font-black text-[11px] uppercase tracking-[5px] text-white flex items-center justify-center gap-3">
-                <i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Video
+            <button onclick="analyzeVideo()" id="btnText" class="btn-rainbow w-full py-6 rounded-3xl font-black text-[11px] uppercase tracking-[5px] text-white flex items-center justify-center gap-3 group">
+                <span class="group-hover:scale-110 transition-transform flex items-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Video
+                </span>
             </button>
         </div>
 
         <div class="grid grid-cols-3 gap-6 mt-16 text-center w-full max-w-md">
-            <div><p class="text-2xl font-black brand-font rainbow-text">1000+</p><p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Sites</p></div>
-            <div><p class="text-2xl font-black brand-font rainbow-text">4K</p><p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Quality</p></div>
-            <div><p class="text-2xl font-black brand-font rainbow-text">FAST</p><p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Server</p></div>
+            <div class="flex flex-col gap-1">
+                <p class="text-2xl font-black brand-font rainbow-text">1000+</p>
+                <p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Sites</p>
+            </div>
+            <div class="flex flex-col gap-1 border-x border-white/5">
+                <p class="text-2xl font-black brand-font rainbow-text">4K</p>
+                <p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Quality</p>
+            </div>
+            <div class="flex flex-col gap-1">
+                <p class="text-2xl font-black brand-font rainbow-text">FAST</p>
+                <p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Server</p>
+            </div>
         </div>
 
         <div id="result" class="mt-12 hidden w-full max-w-lg">
-            <div class="glass p-8 rounded-[40px] relative overflow-hidden border-cyan-500/20 text-center">
+            <div class="glass p-8 rounded-[40px] relative overflow-hidden border-cyan-500/20">
                 <div class="absolute top-0 left-0 w-full h-[2px] btn-rainbow"></div>
-                <p class="text-cyan-400 font-black mb-6 text-[10px] uppercase tracking-[4px]">Download Ready</p>
+                <p class="text-cyan-400 font-black mb-6 text-center text-[10px] uppercase tracking-[4px]">Download Ready</p>
                 <div id="downloadButtons" class="flex flex-col gap-4"></div>
             </div>
         </div>
     </main>
 
     <script>
-    // New 1-Click Method (No Proxy)
-    function startDownload(videoUrl, filename) {
-        // Direct link approach for better compatibility
-        const link = document.createElement('a');
-        link.href = videoUrl;
-        link.setAttribute('download', filename);
-        link.setAttribute('target', '_blank');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    // FINAL 1-CLICK FORCE FIX
+    async function startDownload(videoUrl, filename, btn) {
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Saving...';
+        btn.style.pointerEvents = 'none';
+
+        try {
+            const response = await fetch(videoUrl);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename || 'video.mp4';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        } catch (e) {
+            // Backup for security restrictions
+            const link = document.createElement('a');
+            link.href = videoUrl;
+            link.download = filename;
+            link.target = '_self';
+            link.click();
+        } finally {
+            btn.innerHTML = original;
+            btn.style.pointerEvents = 'auto';
+        }
     }
 
     async function analyzeVideo() {
@@ -109,9 +159,9 @@
         const resultDiv = document.getElementById('result');
         const downloadButtons = document.getElementById('downloadButtons');
 
-        if (!urlInput.value.trim()) return alert("Link paste karein!");
+        if (!urlInput.value.trim()) return alert("Paste link first!");
 
-        btnText.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Analyzing...';
+        btnText.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Fetching...';
         btnText.disabled = true;
         resultDiv.classList.add('hidden');
 
@@ -128,7 +178,6 @@
 
             const res = await response.json();
 
-            // Error handling for "API Busy" or empty response
             if (res.medias && res.medias.length > 0) {
                 resultDiv.classList.remove('hidden');
                 downloadButtons.innerHTML = '';
@@ -136,21 +185,17 @@
                 res.medias.forEach((item, index) => {
                     const isHD = item.quality.includes('1080') || item.quality.includes('4K');
                     downloadButtons.innerHTML += `
-                        <button onclick="startDownload('${item.url}', 'Video_${item.quality}.mp4')" 
-                           class="w-full py-5 ${isHD ? 'bg-cyan-500 text-black' : 'bg-white/5 text-white border border-white/10'} rounded-3xl font-black text-[10px] uppercase tracking-widest flex justify-between px-8 items-center">
+                        <button onclick="startDownload('${item.url}', 'FastVideo_${item.quality}.mp4', this)" 
+                           class="w-full py-5 ${isHD ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'bg-white/5 text-white border border-white/10'} rounded-3xl font-black text-[10px] uppercase tracking-widest transition-all flex justify-between px-8 items-center group">
                             <span>${item.quality} ${item.extension.toUpperCase()}</span>
-                            <i class="fa-solid fa-download"></i>
+                            <i class="fa-solid fa-download group-hover:translate-y-1 transition-transform"></i>
                         </button>
                     `;
                 });
                 resultDiv.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert(res.message || "API busy hai ya link galat hai. 5 seconds baad dobara try karein.");
-            }
-        } catch (err) {
-            alert("Network error! Apna internet check karein.");
-        } finally {
-            btnText.innerHTML = '<i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Video';
+            } else { alert("Link not found!"); }
+        } catch (err) { alert("API Error!"); } finally {
+            btnText.innerHTML = '<span class="flex items-center gap-2"><i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Video</span>';
             btnText.disabled = false;
         }
     }
