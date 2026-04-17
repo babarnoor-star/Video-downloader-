@@ -123,7 +123,101 @@
         </div>
 
         <div id="result" class="mt-12 hidden w-full max-w-lg">
-            <div class="bg-cyan-500/10 border border-cyan-500/30 p-6 rounded-3xl backdrop-blur-md">
-                <p id="videoTitle" class="text-cyan-400 font-bold mb-4 text-center text-xs uppercase tracking-tighter">Ready to Download</p>
-                <div id="downloadButtons" class="flex flex-col gap-3"></div>
-                
+            <div class="bg-cyan-500/10 border border-cyan-500/30 p-8 rounded-[35px] backdrop-blur-md">
+                <p class="text-cyan-400 font-bold mb-6 text-center text-[10px] uppercase tracking-[3px]">Select Quality to Download</p>
+                <div id="downloadButtons" class="flex flex-col gap-4"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    // 1-Click Force Download Function (NO NEXT PAGE)
+    async function startDownload(videoUrl, filename, button) {
+        const originalHtml = button.innerHTML;
+        button.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-2"></i> Fetching...';
+        button.style.pointerEvents = 'none';
+
+        try {
+            // Video fetch karte hain background mein
+            const response = await fetch(videoUrl);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            
+            // Temporary link bana kar click karwate hain
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = filename || 'fast_video_download.mp4';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        } catch (error) {
+            // Backup: Agar fetch block ho jaye (CORS issue), toh naye tab mein khol dein
+            window.open(videoUrl, '_blank');
+        } finally {
+            button.innerHTML = originalHtml;
+            button.style.pointerEvents = 'auto';
+        }
+    }
+
+    async function analyzeVideo() {
+        const urlInput = document.getElementById('urlInput');
+        const btnText = document.getElementById('btnText');
+        const resultDiv = document.getElementById('result');
+        const downloadButtons = document.getElementById('downloadButtons');
+
+        if (!urlInput.value.trim()) {
+            alert("Pehle link paste karein!");
+            return;
+        }
+
+        btnText.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Analyzing...';
+        btnText.disabled = true;
+        resultDiv.classList.add('hidden');
+
+        try {
+            const response = await fetch('https://auto-download-all-in-one.p.rapidapi.com/v1/social/autolink', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-rapidapi-host': 'auto-download-all-in-one.p.rapidapi.com',
+                    'x-rapidapi-key': '0733c17d56mshbb4fd563fb1aad0p15cca4jsnb616ddd8461e'
+                },
+                body: JSON.stringify({ url: urlInput.value.trim() })
+            });
+
+            const res = await response.json();
+
+            if (res.medias && res.medias.length > 0) {
+                resultDiv.classList.remove('hidden');
+                downloadButtons.innerHTML = '';
+
+                res.medias.forEach((item, index) => {
+                    const isHD = item.quality.includes('1080') || item.quality.includes('4K');
+                    const fileName = `video_${index}_${item.quality}.mp4`;
+                    
+                    downloadButtons.innerHTML += `
+                        <button onclick="startDownload('${item.url}', '${fileName}', this)" 
+                           class="w-full py-5 ${isHD ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'bg-white/5 text-white border border-white/10'} rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex justify-between px-8 items-center group">
+                            <span>${item.quality} ${item.extension.toUpperCase()}</span>
+                            <i class="fa-solid fa-circle-arrow-down group-hover:translate-y-1 transition-transform text-lg"></i>
+                        </button>
+                    `;
+                });
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("Koi download link nahi mila. Doosra link try karein.");
+            }
+        } catch (err) {
+            alert("API connection error. Dobara try karein.");
+        } finally {
+            btnText.innerHTML = '<i class="fa-solid fa-bolt"></i> Analyze Link';
+            btnText.disabled = false;
+        }
+    }
+    </script>
+</body>
+</html>
