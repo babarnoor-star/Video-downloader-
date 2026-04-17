@@ -73,7 +73,6 @@
     </header>
 
     <main class="flex-1 flex flex-col items-center px-6 pt-12 pb-20">
-        
         <div class="glass px-5 py-2 rounded-full flex items-center gap-2 mb-8 border-cyan-500/20">
             <span class="text-[10px] font-black uppercase tracking-[3px] rainbow-text">Pro 4K Technology</span>
         </div>
@@ -122,35 +121,23 @@
     </main>
 
     <script>
-    // FINAL 1-CLICK FORCE FIX
+    // 1-CLICK SUCCESS WITH BACKEND TUNNEL
     async function startDownload(videoUrl, filename, btn) {
         const original = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Saving...';
-        btn.style.pointerEvents = 'none';
+        
+        // Aapka Render Backend Link
+        const BACKEND_URL = "https://fast-download-api.onrender.com"; 
+        
+        // Final Download URL through your tunnel
+        const finalUrl = `${BACKEND_URL}/download?url=${encodeURIComponent(videoUrl)}&filename=${encodeURIComponent(filename)}`;
+        
+        // Force Trigger
+        window.location.href = finalUrl;
 
-        try {
-            const response = await fetch(videoUrl);
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename || 'video.mp4';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        } catch (e) {
-            // Backup for security restrictions
-            const link = document.createElement('a');
-            link.href = videoUrl;
-            link.download = filename;
-            link.target = '_self';
-            link.click();
-        } finally {
+        setTimeout(() => {
             btn.innerHTML = original;
-            btn.style.pointerEvents = 'auto';
-        }
+        }, 4000);
     }
 
     async function analyzeVideo() {
@@ -161,7 +148,7 @@
 
         if (!urlInput.value.trim()) return alert("Paste link first!");
 
-        btnText.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Fetching...';
+        btnText.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Analyzing...';
         btnText.disabled = true;
         resultDiv.classList.add('hidden');
 
