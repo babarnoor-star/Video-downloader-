@@ -3,94 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FastVideoDownloader.pro - Best Social Video Downloader</title>
+    <title>FastVideoDownloader.pro - Ultimate 4K Pro Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #0b0f1a; }
-        .hero-gradient { background: linear-gradient(180deg, #111827 0%, #0b0f1a 100%); }
-        .pro-input { background: #1f2937; border: 1px solid #374151; transition: 0.3s; }
-        .pro-input:focus-within { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
-        .btn-glow:hover { box-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
+        /* Base Styles */
+        body { background: #010409; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        .bg-overlay { background: radial-gradient(circle at center, #010409 0%, #000 100%); }
+        
+        /* Neon/Viper Green Accent - As per screenshot */
+        .text-neon { color: #a3ff1a; }
+        .bg-neon-gradient { background: linear-gradient(135deg, #a3ff1a 0%, #06b6d4 100%); }
+        .bg-neon-solid { background: #a3ff1a; }
+        .neon-glow { box-shadow: 0 0 15px rgba(163, 255, 26, 0.4); }
+        .neon-glow:hover { box-shadow: 0 0 25px rgba(163, 255, 26, 0.6); }
+
+        /* Title Text Gradient - As per screenshot */
+        .title-gradient { background: linear-gradient(180deg, #FFFFFF 0%, #666666 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Premium Input - As per screenshot */
+        .pro-input-area { background: #0d1117; border: 1px solid #21262d; border-radius: 20px; transition: 0.3s; }
+        .pro-input-area:focus-within { border-color: #a3ff1a; box-shadow: 0 0 20px rgba(163, 255, 26, 0.2); }
     </style>
 </head>
-<body class="text-slate-200 font-sans">
+<body class="text-slate-300 bg-overlay">
 
-    <header class="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="text-2xl font-black tracking-tight">
-            <span class="text-cyan-500">Fast</span>VideoDownloader<span class="bg-cyan-500 text-slate-900 px-2 py-0.5 rounded ml-1 text-sm align-middle">PRO</span>
+    <header class="p-6 flex justify-between items-center max-w-7xl mx-auto border-b border-slate-900">
+        <div class="text-3xl font-black tracking-tight flex items-center gap-2">
+            <div class="bg-neon-gradient p-1 rounded-full"><i class="fa-solid fa-bolt text-slate-900 text-base"></i></div>
+            <span class="text-neon">Fast</span>Video<span class="text-white">Pro.</span>
         </div>
-        <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-            <a href="#" class="hover:text-cyan-400 transition">TikTok</a>
-            <a href="#" class="hover:text-cyan-400 transition">Instagram</a>
-            <a href="#" class="hover:text-cyan-400 transition">Facebook</a>
-        </div>
+        <div class="text-xs text-slate-600 font-mono tracking-widest uppercase">FastVideoDownloader.pro</div>
     </header>
 
-    <main class="hero-gradient pt-16 pb-24 px-5">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-                Download Any Video <span class="text-cyan-500 text-gradient">Instantly</span>
-            </h1>
-            <p class="text-slate-400 text-lg mb-10">Paste the URL of the video you want to download. No registration required.</p>
-
-            <div class="pro-input flex flex-col md:flex-row p-2 rounded-2xl max-w-3xl mx-auto">
-                <input type="text" id="videoUrl" placeholder="https://www.tiktok.com/@user/video/..." 
-                       class="flex-1 p-4 bg-transparent outline-none text-white text-lg placeholder:text-slate-500">
-                <button onclick="fetchVideo()" class="btn-glow bg-cyan-500 text-slate-900 font-bold px-12 py-4 rounded-xl transition-all active:scale-95">
-                    DOWNLOAD
-                </button>
+    <main class="pt-16 pb-20 px-5">
+        <div class="max-w-5xl mx-auto text-center">
+            
+            <div class="inline-flex items-center gap-3 bg-slate-900/50 border border-slate-800 px-5 py-2 rounded-full text-neon text-sm font-semibold mb-8">
+                <i class="fa-solid fa-4 text-neon"></i>
+                <i class="fa-solid fa-k text-neon"></i>
+                Technology
             </div>
 
-            <div class="mt-12 flex justify-center items-center gap-8 text-slate-500 text-3xl">
-                <i class="fa-brands fa-tiktok"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-snapchat"></i>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
+                Download Any <span class="title-gradient">Video</span> Instantly.
+            </h1>
+            <p class="text-slate-500 text-lg mb-12 max-w-lg mx-auto">Get your favorite content from TikTok, Instagram, and Facebook in highest quality.</p>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="pro-input-area flex flex-col md:flex-row p-2 gap-2 mb-2">
+                    <input type="text" id="videoUrl" placeholder="Paste your social link here..." 
+                           class="flex-1 p-4 bg-transparent outline-none text-white text-lg placeholder:text-slate-700">
+                    <button onclick="fetchVideo()" class="bg-neon-solid neon-glow text-slate-950 font-black px-12 py-4 rounded-xl transition-all active:scale-95 text-lg flex items-center gap-2 justify-center">
+                        ANALYZE VIDEO
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <div class="text-xs text-slate-700 font-mono text-left pl-4">Example: https://www.tiktok.com/@user/video/...</div>
+            </div>
+
+            <div class="mt-20 flex justify-center items-center gap-10 text-slate-600 text-3xl">
+                <i class="fa-brands fa-tiktok hover:text-white transition"></i>
+                <i class="fa-brands fa-instagram hover:text-white transition"></i>
+                <i class="fa-brands fa-facebook hover:text-white transition"></i>
+                <i class="fa-brands fa-twitter hover:text-white transition"></i>
             </div>
         </div>
     </main>
 
-    <div id="loading" class="hidden py-20 text-center">
-        <div class="animate-spin inline-block w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full mb-4"></div>
-        <p class="text-cyan-400 font-semibold">Processing your link...</p>
+    <div id="loading" class="hidden py-16 text-center">
+        <div class="animate-spin inline-block w-12 h-12 border-4 border-neon border-t-transparent rounded-full mb-5"></div>
+        <p class="text-neon text-lg font-semibold">Processing link...</p>
     </div>
 
     <section id="resultArea" class="max-w-4xl mx-auto px-5 py-10 hidden">
-        <div class="bg-slate-800/50 backdrop-blur-md rounded-3xl p-6 border border-slate-700 flex flex-col md:flex-row gap-8">
-            <img id="thumb" src="" alt="preview" class="w-full md:w-64 rounded-2xl shadow-2xl object-cover aspect-video">
-            <div class="flex-1 flex flex-col justify-center">
-                <h3 id="videoTitle" class="text-2xl font-bold text-white mb-6">Video Title Ready</h3>
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col md:flex-row gap-8 shadow-2xl">
+            
+            <div class="relative w-full md:w-80 rounded-2xl overflow-hidden aspect-video border-2 border-slate-800 shadow-xl">
+                <img id="thumb" src="" alt="preview" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                    <div class="bg-neon-gradient px-3 py-1 rounded text-slate-900 text-xs font-black">ACTIVE LINK</div>
+                </div>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 id="videoTitle" class="text-2xl font-bold text-white mb-2 line-clamp-2">Title Fetching...</h3>
+                    <p class="text-sm text-slate-600 font-mono mb-8">Platform: Instagram, TikTok, Facebook (Public Only)</p>
+                }
                 <div id="downloadButtons" class="grid gap-4">
                     </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 border-t border-slate-800 bg-slate-900/50">
+    <section class="py-24 border-t border-slate-900 bg-slate-950/20">
         <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-3 gap-12 text-center">
             <div>
-                <i class="fa-solid fa-link text-cyan-500 text-3xl mb-4"></i>
+                <i class="fa-solid fa-copy text-neon text-4xl mb-5"></i>
                 <h4 class="text-xl font-bold mb-2 text-white">Copy Link</h4>
-                <p class="text-slate-400">Copy the URL from TikTok or Instagram app.</p>
+                <p class="text-slate-500">Copy the URL of the video from app.</p>
             </div>
             <div>
-                <i class="fa-solid fa-square-plus text-cyan-500 text-3xl mb-4"></i>
+                <i class="fa-solid fa-paste text-neon text-4xl mb-5"></i>
                 <h4 class="text-xl font-bold mb-2 text-white">Paste URL</h4>
-                <p class="text-slate-400">Put the link into the search box on FastVideoDownloader.pro</p>
+                <p class="text-slate-500">Put the link into the search box on FastVideoDownloader.pro</p>
             </div>
             <div>
-                <i class="fa-solid fa-circle-down text-cyan-500 text-3xl mb-4"></i>
-                <h4 class="text-xl font-bold mb-2 text-white">Save Video</h4>
-                <p class="text-slate-400">Select quality and your video starts downloading.</p>
+                <i class="fa-solid fa-file-arrow-down text-neon text-4xl mb-5"></i>
+                <h4 class="text-xl font-bold mb-2 text-white">Ready for 4K</h4>
+                <p class="text-slate-500">Select quality and your video starts downloading instantly.</p>
             </div>
         </div>
     </section>
 
-    <footer class="p-12 text-center text-slate-500 border-t border-slate-800">
-        <p class="mb-2">© 2026 FastVideoDownloader.pro | All Rights Reserved.</p>
-        <p class="text-xs uppercase tracking-widest text-slate-600">The Ultimate Pro Downloader</p>
+    <footer class="p-12 text-center text-slate-700 border-t border-slate-950 font-mono">
+        <p>&copy; 2026 FastVideoDownloader.pro | Pure Pro Experience</p>
     </footer>
 
     <script src="script.js"></script>
