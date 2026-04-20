@@ -1,27 +1,32 @@
-// 1. Pehle user ka dala hua asli link pakro
-const originalInputUrl = document.querySelector('input').value; // Check karna agar aapki input ID kuch aur hai
-
-downloadButtons.innerHTML = ''; // Pehle purane buttons saaf karo
-
-res.medias.forEach(item => {
-    // 2. Logic: Agar YouTube hai toh original link bhejo, warna item.url (processed link)
-    let finalLink;
-    if (originalInputUrl.includes('youtube.com') || originalInputUrl.includes('youtu.be')) {
-        finalLink = originalInputUrl; // Asli YouTube link
-    } else {
-        finalLink = item.url; // TikTok/FB ka processed link
+// Ye function video ka asli download link nikalega
+async function getCobaltLink(videoUrl) {
+    try {
+        const response = await fetch('https://api.cobalt.tools/api/json', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                url: videoUrl,
+                vQuality: "720",
+                filenamePattern: "basic"
+            })
+        });
+        const data = await response.json();
+        return data.url || data.picker?.[0]?.url;
+    } catch (e) {
+        return null;
     }
+}
 
-    // 3. Render API Proxy URL
-    const proxyUrl = `https://fast-download-api.onrender.com/download?url=${encodeURIComponent(finalLink)}`;
-
-    const isHighRes = item.quality.includes('720p') || item.quality.includes('1080p');
-    const btnClass = isHighRes 
-        ? "bg-cyan-500 text-black shadow-[0_0_15px_rgba(6,182,212,0.5)]" 
-        : "bg-white/5 text-white border border-white/10";
+// Button generate karte waqt ye use karo
+res.medias.forEach(async (item) => {
+    // Backend proxy ke bajaye, hum direct Cobalt ka link nikalenge
+    const directDownloadUrl = await getCobaltLink(originalInputUrl); 
 
     downloadButtons.innerHTML += `
-        <a href="${proxyUrl}" target="_blank" class="w-full py-4 ${btnClass} rounded-xl font-black text-xs uppercase flex items-center justify-center gap-2">
+        <a href="${directDownloadUrl || '#'}" target="_blank" class="w-full py-4 bg-cyan-500 text-black rounded-xl font-black text-xs uppercase flex items-center justify-center gap-2">
             <span>DOWNLOAD ${item.quality}</span>
             <i class="fa-solid fa-circle-down"></i>
         </a>
