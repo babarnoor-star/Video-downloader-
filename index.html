@@ -7,118 +7,113 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         
-        /* Wahi Original Rainbow Text Animation */
-        .rainbow-text {
-            background: linear-gradient(to right, #ff4d00, #ff00ea, #00f2fe, #ffac00, #ff4d00);
+        body { 
+            background: radial-gradient(circle at top, #0a0f16 0%, #000000 100%); 
+            color: #fff; 
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* EXACT SCREENSHOT GRADIENT 🌈 */
+        .rainbow-header {
+            background: linear-gradient(180deg, #FFFFFF 0%, #FF7A00 40%, #00FF19 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: rainbow-move 6s linear infinite;
-            background-size: 200% auto;
-        }
-
-        /* Rainbow Hover for Policy Links */
-        .rainbow-hover:hover {
-            background: linear-gradient(to right, #ff4d00, #ff00ea, #00f2fe, #ffac00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rainbow-move 3s linear infinite;
-            background-size: 200% auto;
-        }
-
-        @keyframes rainbow-move {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        /* Original Screenshot Box Styles */
-        .pro-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #1a1a1a;
-            border-radius: 40px;
-        }
-
-        .analyze-btn {
-            background: linear-gradient(to right, #22d3ee, #a3ff1a);
-            color: #000;
             font-weight: 900;
-            border-radius: 25px;
+            line-height: 0.9;
+        }
+
+        /* ANALYZE BUTTON GRADIENT */
+        .analyze-btn {
+            background: linear-gradient(to right, #00FFC2, #A3FF1A);
+            color: #053529;
+            font-weight: 800;
+            border-radius: 30px;
+        }
+
+        /* BORDER BOX STYLE */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 60px;
+        }
+
+        /* RAINBOW HOVER FOR FOOTER */
+        .rainbow-hover:hover {
+            background: linear-gradient(to right, #FF7A00, #00FF19, #00F0FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             transition: 0.3s;
         }
-        
-        .analyze-btn:hover { transform: scale(1.01); box-shadow: 0 0 25px rgba(34, 211, 238, 0.3); }
-
-        .cyan-text { color: #22d3ee; }
-        .neon-text { color: #a3ff1a; }
     </style>
 </head>
-<body class="flex flex-col items-center min-h-screen px-4 pt-10">
+<body class="flex flex-col items-center min-h-screen px-4 pt-12">
 
-    <div class="mb-12 text-center">
-        <div class="flex items-center justify-center gap-2 mb-1">
-            <div class="bg-cyan-500 p-2 rounded-lg text-black"><i class="fa-solid fa-bolt"></i></div>
-            <h1 class="text-xl font-black italic tracking-tighter text-cyan-400">FAST VIDEO <span class="text-white text-[10px] block -mt-2 font-normal not-italic tracking-[0.2em] uppercase">DOWNLOADER</span></h1>
-        </div>
-    </div>
-
-    <div class="text-center mb-12">
-        <div class="border border-cyan-900/50 px-4 py-1 rounded-full text-[10px] text-cyan-400 font-bold mb-6 inline-block tracking-widest uppercase">PRO 4K TECHNOLOGY</div>
-        <h2 class="text-5xl md:text-8xl font-black mb-1 leading-tight tracking-tighter uppercase">FAST VIDEO</h2>
-        <h2 class="text-5xl md:text-8xl font-black rainbow-text uppercase tracking-tighter">DOWNLOADER PRO.</h2>
-    </div>
-
-    <div class="w-full max-w-2xl pro-box p-8 mb-16 border border-zinc-900/50 shadow-2xl">
-        <div class="relative flex items-center mb-5">
-            <i class="fa-solid fa-link absolute left-5 text-zinc-600"></i>
-            <input type="text" id="videoUrl" placeholder="Paste link here..." class="w-full bg-black/50 border border-zinc-800 p-5 pl-14 rounded-2xl outline-none focus:border-cyan-500 transition text-white">
-        </div>
-        <button onclick="fetchVideo()" class="w-full py-5 analyze-btn uppercase tracking-[0.3em] text-sm shadow-lg">ANALYZE VIDEO</button>
-    </div>
-
-    <div class="flex justify-between w-full max-w-2xl text-center mb-20 border-b border-zinc-900 pb-12 px-5">
-        <div><h4 class="neon-text text-2xl font-black">1000+</h4><p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Sites</p></div>
-        <div><h4 class="neon-text text-2xl font-black">4K</h4><p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Quality</p></div>
-        <div><h4 class="neon-text text-2xl font-black">FAST</h4><p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Server</p></div>
-    </div>
-
-    <div id="loading" class="hidden mb-10"><i class="fa-solid fa-circle-notch animate-spin text-4xl text-cyan-500"></i></div>
-    <div id="resultArea" class="hidden w-full max-w-xl mb-24">
-        <div class="bg-zinc-900/80 rounded-[2.5rem] p-6 border border-zinc-800 shadow-2xl">
-            <img id="thumb" src="" class="w-full rounded-3xl mb-6 aspect-video object-cover border border-zinc-800">
-            <h3 id="videoTitle" class="text-center font-bold mb-6 text-white px-4"></h3>
-            <div id="downloadButtons" class="grid gap-3"></div>
-        </div>
-    </div>
-
-    <section class="w-full max-w-6xl mb-24">
-        <h2 class="text-center text-2xl font-black mb-12 uppercase tracking-widest">Ultimate <span class="neon-text">4K Video</span> Downloader</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-zinc-900/30 p-8 rounded-[2rem] border border-zinc-800 text-center">
-                <i class="fa-brands fa-instagram text-3xl mb-4 text-pink-500"></i>
-                <h4 class="font-bold mb-2">Free Instagram Video Downloader</h4>
-                <p class="text-xs text-zinc-500 leading-relaxed">Save Reels and IGTV videos in high definition with our fast 4K technology.</p>
+    <div class="mb-20 self-start md:self-center ml-4 md:ml-0">
+        <div class="flex items-center gap-3">
+            <div class="bg-[#00F0FF] p-2 rounded-xl text-black shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+                <i class="fa-solid fa-bolt-lightning"></i>
             </div>
-            <div class="bg-zinc-900/30 p-8 rounded-[2rem] border border-zinc-800 text-center">
-                <i class="fa-brands fa-tiktok text-3xl mb-4 text-white"></i>
-                <h4 class="font-bold mb-2">TikTok Downloader No Watermark</h4>
-                <p class="text-xs text-zinc-500 leading-relaxed">Download clean TikTok videos without any logos. Best MP4 quality guaranteed.</p>
-            </div>
-            <div class="bg-zinc-900/30 p-8 rounded-[2rem] border border-zinc-800 text-center">
-                <i class="fa-brands fa-facebook text-3xl mb-4 text-blue-500"></i>
-                <h4 class="font-bold mb-2">Facebook HD Video Downloader</h4>
-                <p class="text-xs text-zinc-500 leading-relaxed">Fastest server to grab Facebook clips in high bitrate. 100% secure and free.</p>
+            <div>
+                <h1 class="text-2xl font-black italic tracking-tighter text-[#00F0FF] leading-none">FAST VIDEO</h1>
+                <p class="text-[10px] tracking-[0.4em] text-zinc-500 font-bold uppercase">Downloader</p>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="text-center mb-10">
+        <div class="border border-emerald-900/30 bg-emerald-950/20 px-6 py-2 rounded-full text-[11px] text-[#00FF19] font-bold mb-8 inline-block tracking-widest uppercase">
+            PRO 4K TECHNOLOGY
+        </div>
+        <h2 class="text-6xl md:text-8xl rainbow-header uppercase tracking-tighter">
+            FAST VIDEO<br>DOWNLOADER<br>PRO.
+        </h2>
+    </div>
+
+    <div class="w-full max-w-2xl glass-card p-10 mb-20">
+        <div class="relative flex items-center mb-6">
+            <i class="fa-solid fa-link absolute left-6 text-zinc-600 text-xl"></i>
+            <input type="text" id="videoUrl" placeholder="Paste link here..." 
+                   class="w-full bg-[#0a0a0a] border border-zinc-900 p-6 pl-16 rounded-[2rem] outline-none focus:border-emerald-500 transition text-lg">
+        </div>
+        <button onclick="fetchVideo()" class="w-full py-7 analyze-btn uppercase tracking-[0.3em] text-sm hover:opacity-90 transition shadow-xl">
+            ANALYZE VIDEO
+        </button>
+    </div>
+
+    <div class="flex justify-between w-full max-w-2xl text-center mb-32 px-4">
+        <div><h4 class="text-[#FFB800] text-4xl font-black italic">1000+</h4><p class="text-[10px] text-zinc-600 uppercase font-bold tracking-widest mt-1">Sites</p></div>
+        <div><h4 class="text-[#A3FF1A] text-4xl font-black italic">4K</h4><p class="text-[10px] text-zinc-600 uppercase font-bold tracking-widest mt-1">Quality</p></div>
+        <div><h4 class="text-[#FFB800] text-4xl font-black italic">FAST</h4><p class="text-[10px] text-zinc-600 uppercase font-bold tracking-widest mt-1">Server</p></div>
+    </div>
+
+    <div class="w-full max-w-4xl text-center mb-24">
+        <h2 class="text-3xl font-black text-[#A3FF1A] mb-4 uppercase italic">Ultimate 4K Video Downloader</h2>
+        <p class="text-zinc-500 text-sm max-w-2xl mx-auto mb-12">
+            Humari website se aap <strong class="text-white">Instagram Reels</strong>, <strong class="text-white">TikTok videos without watermark</strong>, aur <strong class="text-white">Facebook HD videos</strong> bhot asani se download kar sakte hain.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-5">
+            <div class="bg-zinc-900/20 p-6 rounded-3xl border border-zinc-900 italic">
+                <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Free Instagram Video Downloader</p>
+            </div>
+            <div class="bg-zinc-900/20 p-6 rounded-3xl border border-zinc-900 italic">
+                <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">TikTok Downloader No Watermark</p>
+            </div>
+            <div class="bg-zinc-900/20 p-6 rounded-3xl border border-zinc-900 italic">
+                <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Facebook HD Video Downloader</p>
+            </div>
+        </div>
+    </div>
 
     <footer class="w-full py-20 bg-black border-t border-zinc-900 text-center mt-auto">
-        <div class="flex flex-wrap justify-center gap-10 md:gap-16 mb-12 px-5">
-            <a href="#" class="text-xl md:text-2xl font-black uppercase tracking-tighter text-white transition-all rainbow-hover">Privacy Policy</a>
-            <a href="#" class="text-xl md:text-2xl font-black uppercase tracking-tighter text-white transition-all rainbow-hover">Terms of Service</a>
-            <a href="#" class="text-xl md:text-2xl font-black uppercase tracking-tighter text-white transition-all rainbow-hover">Contact Us</a>
+        <div class="flex flex-wrap justify-center gap-12 md:gap-20 mb-12 px-5">
+            <a href="#" class="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white transition-all rainbow-hover">Privacy Policy</a>
+            <a href="#" class="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white transition-all rainbow-hover">Terms of Service</a>
+            <a href="#" class="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white transition-all rainbow-hover">Contact Us</a>
         </div>
-        <p class="text-[10px] font-mono text-zinc-700 tracking-[0.5em] uppercase mt-10">© 2026 Fast Video Downloader Pro. All rights reserved.</p>
+        <p class="text-[11px] font-bold text-zinc-800 tracking-[0.6em] uppercase">© 2026 Fast Video Downloader Pro.</p>
     </footer>
 
     <script src="script.js"></script>
