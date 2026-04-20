@@ -1,5 +1,5 @@
-// 1. Ye naya function Script.js mein sab se upar ya kahin bhi add karo
-async function fetchDirectDownloadLink(userUrl) {
+// 1. Ye function user ke browser se Cobalt ko direct call karega
+async function getFastLink(videoUrl) {
     try {
         const response = await fetch('https://api.cobalt.tools/api/json', {
             method: 'POST',
@@ -8,32 +8,33 @@ async function fetchDirectDownloadLink(userUrl) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                url: userUrl,
+                url: videoUrl,
                 vQuality: "720",
                 filenamePattern: "basic"
             })
         });
         const data = await response.json();
-        return data.url; // Cobalt humein direct link dega
+        return data.url || data.picker?.[0]?.url;
     } catch (e) {
-        console.error("Cobalt Error:", e);
         return null;
     }
 }
 
-// 2. Apne loop ke andar isey aise use karo
-res.medias.forEach(async (item) => {
-    const inputUrl = document.querySelector('.url-input-field').value; // Aapki input class
-    
-    // Render wala link use NAHI karna, direct Cobalt se link mangna hai
-    const finalLink = await fetchDirectDownloadLink(inputUrl);
+// 2. Button banane wala hissa (res.medias loop)
+downloadButtons.innerHTML = ''; // Pehle purane buttons saaf karo
 
-    if (finalLink) {
-        downloadButtons.innerHTML += `
-            <a href="${finalLink}" target="_blank" class="w-full py-4 bg-cyan-500 text-black rounded-xl font-black text-xs uppercase flex items-center justify-center gap-2">
-                <span>DOWNLOAD ${item.quality}</span>
-                <i class="fa-solid fa-circle-down"></i>
-            </a>
-        `;
-    }
+// Loop shuru hone se pehle hi Cobalt se direct link mang lo
+const inputUrl = document.querySelector('input').value; // Check karo aapki input class/id kya hai
+const cobaltDirectLink = await getFastLink(inputUrl);
+
+res.medias.forEach(item => {
+    // Agar Cobalt se link mil gaya toh wo use karo, warna purana method
+    const finalUrl = cobaltDirectLink || item.url;
+
+    downloadButtons.innerHTML += `
+        <a href="${finalUrl}" target="_blank" class="w-full py-4 bg-cyan-500 text-black rounded-xl font-black text-xs uppercase flex items-center justify-center gap-2">
+            <span>DOWNLOAD ${item.quality}</span>
+            <i class="fa-solid fa-circle-down"></i>
+        </a>
+    `;
 });
