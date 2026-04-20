@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAST VIDEO | Premium 4K Downloader</title>
+    
+    <title>Fast Video Downloader | Download 4K Videos Free</title>
+    <meta name="description" content="Download high-quality 4K videos from Instagram, TikTok, and 1000+ sites with Fast Video Downloader. Free, safe, and 1-click downloads.">
+    <meta name="keywords" content="video downloader, download reels, tiktok downloader, 4k video download, fast video downloader">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -12,97 +16,113 @@
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #050505;
-            /* Modern Modified Look: Deep Mesh Gradient */
             background-image: 
-                radial-gradient(at 0% 0%, rgba(34, 211, 238, 0.12) 0px, transparent 40%),
-                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 40%),
-                linear-gradient(to bottom, #050505, #0a0a0f);
+                radial-gradient(at 0% 0%, rgba(34, 211, 238, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
             color: white;
             min-height: 100vh;
         }
 
         .brand-font { font-family: 'Orbitron', sans-serif; }
-        .glass {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+
+        .rainbow-text {
+            background: linear-gradient(to right, #FF3D00, #FFD600, #00E676, #00B0FF, #D500F9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: moveGradient 4s linear infinite;
         }
 
         .btn-rainbow {
             background: linear-gradient(-45deg, #FF3D00, #FFD600, #00E676, #00B0FF, #D500F9);
             background-size: 400% 400%;
-            animation: gradientMove 6s ease infinite;
+            animation: moveGradient 6s ease infinite;
+            border: 2px solid rgba(255,255,255,0.1);
         }
 
-        @keyframes gradientMove {
+        @keyframes moveGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        .premium-border { border-bottom: 1px solid transparent; border-image: linear-gradient(to right, transparent, #22d3ee, transparent) 1; }
     </style>
 </head>
-<body class="flex flex-col items-center px-6">
+<body class="flex flex-col">
 
-    <header class="w-full max-w-lg py-10 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <div class="bg-cyan-500 p-2 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.4)]">
-                <i class="fa-solid fa-bolt-lightning text-black text-lg"></i>
+    <header class="w-full max-w-6xl mx-auto px-6 py-8 flex justify-between items-center premium-border">
+        <div class="flex flex-col">
+            <div class="flex items-center gap-2">
+                <div class="bg-cyan-500 p-1.5 rounded shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                    <i class="fa-solid fa-bolt text-black text-sm"></i>
+                </div>
+                <span class="brand-font text-xl font-black italic tracking-tighter">FAST <span class="text-cyan-400">VIDEO</span></span>
             </div>
-            <span class="brand-font text-2xl font-black italic tracking-tighter uppercase">Fast<span class="text-cyan-400">Video</span></span>
+            <span class="text-[9px] font-bold text-gray-500 uppercase tracking-[4px] ml-9">Downloader</span>
         </div>
-        <div class="text-[9px] font-black text-gray-600 uppercase tracking-[4px]">Turbo v2.5</div>
     </header>
 
-    <main class="w-full max-w-lg">
-        <div class="glass p-8 rounded-[40px] text-center mb-10 shadow-2xl">
-            <h1 class="text-5xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">Instant <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 italic">Downloads.</span></h1>
-            
-            <input type="text" id="urlInput" placeholder="Paste video link here..." 
-                class="w-full bg-black/50 border border-white/5 p-5 rounded-2xl outline-none mb-4 text-center text-sm focus:border-cyan-500 transition-all">
-            
-            <button onclick="analyzeVideo()" id="btnText" class="btn-rainbow w-full py-5 rounded-2xl font-black text-[10px] uppercase tracking-[4px] text-white shadow-xl active:scale-95 transition-all">
-                START ANALYZING
+    <main class="flex-1 flex flex-col items-center px-6 pt-12 pb-20">
+        <div class="glass px-5 py-2 rounded-full flex items-center gap-2 mb-8 border-cyan-500/20">
+            <span class="text-[10px] font-black uppercase tracking-[3px] rainbow-text">Pro 4K Technology</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-black text-center leading-[0.9] mb-6 tracking-tighter uppercase">
+            Fast Video <br> 
+            <span class="italic rainbow-text">Downloader Pro.</span>
+        </h1>
+
+        <div class="w-full max-w-lg glass p-7 rounded-[40px] shadow-2xl relative">
+            <div class="relative mb-5 group">
+                <i class="fa-solid fa-link absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-cyan-400 transition-all"></i>
+                <input type="text" id="urlInput" placeholder="Paste link here..." 
+                    class="w-full bg-black/60 border border-white/5 p-5 pl-14 rounded-3xl outline-none focus:border-cyan-500/30 transition-all text-sm">
+            </div>
+
+            <button onclick="analyzeVideo()" id="btnText" class="btn-rainbow w-full py-6 rounded-3xl font-black text-[11px] uppercase tracking-[5px] text-white flex items-center justify-center gap-3">
+                <i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Video
             </button>
         </div>
 
-        <div id="result" class="hidden">
-            <div class="glass p-8 rounded-[40px] relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 to-purple-600"></div>
+        <div class="grid grid-cols-3 gap-6 mt-16 text-center w-full max-w-md">
+            <div><p class="text-2xl font-black brand-font rainbow-text">1000+</p><p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Sites</p></div>
+            <div><p class="text-2xl font-black brand-font rainbow-text">4K</p><p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Quality</p></div>
+            <div><p class="text-2xl font-black brand-font rainbow-text">FAST</p><p class="text-[8px] text-gray-600 uppercase font-black tracking-widest">Server</p></div>
+        </div>
+
+        <div id="result" class="mt-12 hidden w-full max-w-lg">
+            <div class="glass p-8 rounded-[40px] relative overflow-hidden border-cyan-500/20 text-center">
+                <div class="absolute top-0 left-0 w-full h-[2px] btn-rainbow"></div>
+                <p class="text-cyan-400 font-black mb-6 text-[10px] uppercase tracking-[4px]">Download Ready</p>
                 <div id="downloadButtons" class="flex flex-col gap-4"></div>
             </div>
         </div>
+
+        <section class="mt-24 w-full max-w-4xl text-center">
+            <div class="glass p-10 rounded-[40px] border-white/5">
+                <h2 class="text-2xl font-black mb-6 rainbow-text">Ultimate 4K Video Downloader</h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-8">
+                    Humari website se aap Instagram Reels, TikTok videos aur 1000+ platforms se HD quality mein video save kar sakte hain. Ye tool fast, secure aur 100% free hai. Bas link copy karein, analyze par click karein aur apna download enjoy karein.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="p-4 bg-white/5 rounded-2xl"><h3 class="text-cyan-400 font-bold mb-2">No Ads</h3><p class="text-[10px] text-gray-500">Bina kisi disturbance ke download karein.</p></div>
+                    <div class="p-4 bg-white/5 rounded-2xl"><h3 class="text-cyan-400 font-bold mb-2">Safe</h3><p class="text-[10px] text-gray-500">User privacy humari pehli tarjih hai.</p></div>
+                    <div class="p-4 bg-white/5 rounded-2xl"><h3 class="text-cyan-400 font-bold mb-2">Unlimited</h3><p class="text-[10px] text-gray-500">Jitni chahen videos save karein.</p></div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script>
-    // THE ULTIMATE 1-CLICK FIX (USING BLOB + PROXY)
-    async function forceDownload(videoUrl, filename, btn) {
-        const originalHtml = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> SAVING...';
-        btn.style.pointerEvents = "none";
-
-        try {
-            // Hum aik Proxy use kar rahe hain taake browser block na kare
-            const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(videoUrl);
-            
-            const response = await fetch(proxyUrl);
-            const blob = await response.blob();
-            const blobUrl = window.URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = blobUrl;
-            a.download = filename || 'fast_video.mp4';
-            document.body.appendChild(a);
-            a.click();
-            
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(blobUrl);
-        } catch (e) {
-            // Agar proxy fail ho (bohot bari file par), toh direct open karein
-            window.open(videoUrl, '_blank');
-        } finally {
-            btn.innerHTML = originalHtml;
-            btn.style.pointerEvents = "auto";
-        }
+    async function startDownload(videoUrl, filename, btn) {
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Saving...';
+        const BACKEND_URL = "https://fast-download-api.onrender.com"; 
+        const finalUrl = `${BACKEND_URL}/download?url=${encodeURIComponent(videoUrl)}&filename=${encodeURIComponent(filename)}`;
+        window.location.href = finalUrl;
+        setTimeout(() => { btn.innerHTML = original; }, 4000);
     }
 
     async function analyzeVideo() {
@@ -111,9 +131,9 @@
         const resultDiv = document.getElementById('result');
         const downloadButtons = document.getElementById('downloadButtons');
 
-        if (!urlInput.value.trim()) return alert("Please paste a link!");
+        if (!urlInput.value.trim()) return alert("Link paste karein!");
 
-        btnText.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin"></i> FETCHING...';
+        btnText.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Analyzing...';
         btnText.disabled = true;
         resultDiv.classList.add('hidden');
 
@@ -129,28 +149,29 @@
             });
 
             const res = await response.json();
-
             if (res.medias && res.medias.length > 0) {
                 resultDiv.classList.remove('hidden');
-                downloadButtons.innerHTML = '<p class="text-[10px] text-center font-bold text-gray-500 uppercase tracking-[4px] mb-6">Quality Options Found</p>';
-
-                res.medias.forEach((item, index) => {
-                    const isHigh = item.quality.includes('1080') || item.quality.includes('4K');
-                    downloadButtons.innerHTML += `
-                        <button onclick="forceDownload('${item.url}', 'FastVideo_${item.quality}.mp4', this)" 
-                           class="w-full py-5 ${isHigh ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'bg-white/5 text-white border border-white/10'} rounded-2xl font-black text-[11px] uppercase tracking-widest transition-all flex justify-between px-8 items-center group">
-                            <span>${item.quality} ${item.extension.toUpperCase()}</span>
-                            <i class="fa-solid fa-download group-hover:translate-y-1 transition-transform"></i>
-                        </button>
-                    `;
+                downloadButtons.innerHTML = '';
+                res.medias.forEach((item) => {
+                    const isHD = item.quality.includes('1080') || item.quality.includes('4K');
+                    downloadButtons.innerHTML += `<button onclick="startDownload('${item.url}', 'FastVideo_${item.quality}.mp4', this)" class="w-full py-5 ${isHD ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'bg-white/5 text-white border border-white/10'} rounded-3xl font-black text-[10px] uppercase tracking-widest flex justify-between px-8 items-center group"><span>${item.quality} ${item.extension.toUpperCase()}</span><i class="fa-solid fa-download group-hover:translate-y-1 transition-transform"></i></button>`;
                 });
                 resultDiv.scrollIntoView({ behavior: 'smooth' });
             } else { alert("Link not found!"); }
         } catch (err) { alert("API Error!"); } finally {
-            btnText.innerHTML = 'START ANALYZING';
+            btnText.innerHTML = '<i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Video';
             btnText.disabled = false;
         }
     }
     </script>
+    <footer style="text-align: center; margin-top: 50px; padding: 30px 20px; color: #888; border-top: 1px solid #333; background: #121212;">
+        <div style="margin-bottom: 15px;">
+            <a href="privacy.html" style="color: #ffcc00; text-decoration: none; margin: 0 15px; font-size: 14px;">Privacy Policy</a>
+            <a href="terms.html" style="color: #ffcc00; text-decoration: none; margin: 0 15px; font-size: 14px;">Terms of Service</a>
+            <a href="contact.html" style="color: #ffcc00; text-decoration: none; margin: 0 15px; font-size: 14px;">Contact Us</a>
+        </div>
+        <p style="font-size: 13px; margin: 0;">&copy; 2026 Fast Video Downloader Pro. All rights reserved.</p>
+    </footer>
+    </body> </html>
 </body>
 </html>
