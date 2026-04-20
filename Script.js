@@ -1,5 +1,5 @@
-// 1. Ye function user ke browser se Cobalt ko direct call karega
-async function getFastLink(videoUrl) {
+// 1. Cobalt API se direct link nikalne ka function
+async function getDownloadLink(url) {
     try {
         const response = await fetch('https://api.cobalt.tools/api/json', {
             method: 'POST',
@@ -8,7 +8,7 @@ async function getFastLink(videoUrl) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                url: videoUrl,
+                url: url,
                 vQuality: "720",
                 filenamePattern: "basic"
             })
@@ -16,25 +16,28 @@ async function getFastLink(videoUrl) {
         const data = await response.json();
         return data.url || data.picker?.[0]?.url;
     } catch (e) {
+        console.error("Error fetching link:", e);
         return null;
     }
 }
 
-// 2. Button banane wala hissa (res.medias loop)
-downloadButtons.innerHTML = ''; // Pehle purane buttons saaf karo
+// 2. Button Generate karne ka function
+async function handleDownload() {
+    const inputUrl = document.querySelector('input').value; // Check karo input ki ID/Class sahi hai
+    if(!inputUrl) return alert("Link to daalo jani!");
 
-// Loop shuru hone se pehle hi Cobalt se direct link mang lo
-const inputUrl = document.querySelector('input').value; // Check karo aapki input class/id kya hai
-const cobaltDirectLink = await getFastLink(inputUrl);
+    downloadButtons.innerHTML = '<p class="text-white">Searching link... Please wait...</p>';
 
-res.medias.forEach(item => {
-    // Agar Cobalt se link mil gaya toh wo use karo, warna purana method
-    const finalUrl = cobaltDirectLink || item.url;
+    const finalLink = await getDownloadLink(inputUrl);
 
-    downloadButtons.innerHTML += `
-        <a href="${finalUrl}" target="_blank" class="w-full py-4 bg-cyan-500 text-black rounded-xl font-black text-xs uppercase flex items-center justify-center gap-2">
-            <span>DOWNLOAD ${item.quality}</span>
-            <i class="fa-solid fa-circle-down"></i>
-        </a>
-    `;
-});
+    if (finalLink) {
+        downloadButtons.innerHTML = `
+            <a href="${finalLink}" target="_blank" class="w-full py-4 bg-cyan-500 text-black rounded-xl font-black text-xs uppercase flex items-center justify-center gap-2">
+                <span>DOWNLOAD NOW</span>
+                <i class="fa-solid fa-circle-down"></i>
+            </a>
+        `;
+    } else {
+        downloadButtons.innerHTML = '<p class="text-red-500">YouTube is too strong. Use a PC to get cookies.</p>';
+    }
+}
