@@ -1,59 +1,45 @@
-const resultArea = document.getElementById('resultArea');
-const loading = document.getElementById('loading');
-const downloadButtons = document.getElementById('downloadButtons');
-const thumb = document.getElementById('thumb');
-const videoTitle = document.getElementById('videoTitle');
-
 async function fetchVideo() {
-    const videoUrl = document.getElementById('videoUrl').value.trim();
-    
-    if (!videoUrl) {
-        alert("Pehle link to paste karo jani!");
-        return;
-    }
+    const input = document.getElementById('videoUrl');
+    const resultArea = document.getElementById('resultArea');
+    const loading = document.getElementById('loading');
+    const downloadButtons = document.getElementById('downloadButtons');
+    const thumb = document.getElementById('thumb');
+    const videoTitle = document.getElementById('videoTitle');
 
-    // Pehle purana result chupa do aur loading dikhao
+    if (!input.value.trim()) return alert("Link missing!");
+
+    // Hide old results, show loading
     resultArea.classList.add('hidden');
     loading.classList.remove('hidden');
 
     try {
-        // Hum aik free public API use karenge link extract karne ke liye (YouTube ke ilawa)
-        const response = await fetch(`https://api.vkrtool.com/api/v1/get?url=${encodeURIComponent(videoUrl)}`);
+        const response = await fetch(`https://api.vkrtool.com/api/v1/get?url=${encodeURIComponent(input.value.trim())}`);
         const data = await response.json();
 
-        if (data.status === "success" && data.data) {
-            const videoData = data.data;
-
-            // Thumbnail aur Title set karo
-            thumb.src = videoData.thumbnail || 'https://via.placeholder.com/300x200?text=No+Preview';
-            videoTitle.innerText = videoData.title || "Video Download Ready";
-
-            // Download Buttons banao
-            downloadButtons.innerHTML = '';
+        if (data.status === "success") {
+            thumb.src = data.data.thumbnail || 'https://via.placeholder.com/640x360';
+            videoTitle.innerText = data.data.title || "Your Video is Ready";
             
-            videoData.medias.forEach(item => {
-                // Render wala proxy link
+            downloadButtons.innerHTML = '';
+            data.data.medias.forEach(item => {
+                // Hamesha Render backend use karein taake stream/download start ho jaye
                 const proxyUrl = `https://fast-download-api.onrender.com/download?url=${encodeURIComponent(item.url)}`;
                 
                 downloadButtons.innerHTML += `
-                    <a href="${proxyUrl}" target="_blank" class="w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 rounded-xl font-black text-xs uppercase flex items-center justify-center gap-2 transition-all">
-                        <span>DOWNLOAD ${item.quality} (${item.extension})</span>
-                        <i class="fa-solid fa-circle-down"></i>
+                    <a href="${proxyUrl}" target="_blank" class="flex items-center justify-between bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-6 py-4 rounded-xl font-bold transition-all transform hover:-translate-y-1">
+                        <span>${item.quality} (${item.extension.toUpperCase()})</span>
+                        <i class="fa-solid fa-download"></i>
                     </a>
                 `;
             });
 
-            // Loading khatam aur Result dikhao
             loading.classList.add('hidden');
             resultArea.classList.remove('hidden');
-
         } else {
-            throw new Error("Invalid Link or Platform");
+            throw new Error();
         }
-
-    } catch (error) {
+    } catch (e) {
         loading.classList.add('hidden');
-        alert("Error: Ya to link galat hai ya ye platform abhi support nahi hai (YouTube filhal band hai).");
-        console.error(error);
+        alert("Platform not supported or Invalid link. (Note: YouTube is currently unavailable)");
     }
 }
