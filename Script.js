@@ -6,26 +6,32 @@ async function fetchVideo() {
     const thumb = document.getElementById('thumb');
     const videoTitle = document.getElementById('videoTitle');
 
-    if (!input.value.trim()) return alert("Link paste karein!");
+    if (!input.value.trim()) return alert("Jani, link to dalo!");
 
     loading.classList.remove('hidden');
     resultArea.classList.add('hidden');
 
     try {
-        const response = await fetch(`https://api.vkrtool.com/api/v1/get?url=${encodeURIComponent(input.value.trim())}`);
+        const videoUrl = input.value.trim();
+        // Hum direct public API use kar rahe hain jo Render ke bagair link deti hai
+        const response = await fetch(`https://api.vkrtool.com/api/v1/get?url=${encodeURIComponent(videoUrl)}`);
         const data = await response.json();
 
-        if (data.status === "success") {
+        if (data.status === "success" && data.data.medias) {
             thumb.src = data.data.thumbnail;
             videoTitle.innerText = data.data.title;
             
             downloadButtons.innerHTML = '';
+            
             data.data.medias.forEach(item => {
-                // Render Backend Proxy taake file download ho
-                const proxyUrl = `https://fast-download-api.onrender.com/download?url=${encodeURIComponent(item.url)}`;
-                
+                // AB RENDER NAHI HAI - Seedha direct link use hoga
+                // Hum download attribute aur target blank use karenge
                 downloadButtons.innerHTML += `
-                    <a href="${proxyUrl}" target="_blank" class="w-full py-4 bg-cyan-500 text-black rounded-xl font-black text-[10px] uppercase flex items-center justify-center gap-2">
+                    <a href="${item.url}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       download="FastVideo_${item.quality}.mp4"
+                       class="w-full py-4 bg-[#a3ff1a] text-black rounded-xl font-black text-[12px] uppercase flex items-center justify-center gap-2 hover:scale-105 transition-transform shadow-[0_0_15px_rgba(163,255,26,0.3)]">
                         <span>DOWNLOAD ${item.quality}</span>
                         <i class="fa-solid fa-circle-down"></i>
                     </a>
@@ -39,6 +45,6 @@ async function fetchVideo() {
         }
     } catch (e) {
         loading.classList.add('hidden');
-        alert("Platform not supported or link private.");
+        alert("Platform not supported or link private. (No Render error anymore!)");
     }
 }
