@@ -1,3 +1,7 @@
+// Backend ko jaagte rehne ke liye (Wake up call)
+window.addEventListener('load', () => {
+    fetch("https://fast-download-api.onrender.com").catch(err => console.log("Pinged!"));
+});
 async function fetchVideo() {
     const input = document.getElementById('videoUrl');
     const resultArea = document.getElementById('resultArea');
