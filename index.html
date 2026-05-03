@@ -8,15 +8,12 @@
     <meta name="description" content="Download high-quality 4K videos from Instagram, TikTok, and 1000+ sites with Fast Video Downloader. Free, safe, and 1-click downloads.">
     <meta name="keywords" content="video downloader, download reels, tiktok downloader, 4k video download, fast video downloader">
     
-    <!-- 1. Performance Optimization: Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <!-- 2. Font Loading Fix: Moved from @import to link for faster rendering -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     
-    <!-- 3. Tailwind CSS: Production mein hamesha built-css honi chahiye, magar filhal optimize kar diya hai -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     
@@ -29,7 +26,6 @@
                 radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
             color: white;
             min-height: 100vh;
-            /* Improvement: Prevent horizontal scroll */
             overflow-x: hidden; 
         }
 
@@ -58,8 +54,6 @@
         }
 
         .premium-border { border-bottom: 1px solid transparent; border-image: linear-gradient(to right, transparent, #22d3ee, transparent) 1; }
-        
-        /* Optimization: Hide images initially to prevent layout shift */
         img { content-visibility: auto; }
     </style>
 </head>
@@ -67,8 +61,10 @@
 
     <header class="w-full max-w-6xl mx-auto px-6 py-8 flex justify-between items-center premium-border">
         <div class="flex items-center gap-4">
-            <!-- Optimization: Added width/height attributes for LCP speed -->
-            <img src="logo.png" alt="Logo" width="56" height="56" class="w-14 h-14 object-contain rounded-xl border border-white/10" onerror="this.style.display='none'">
+            <picture>
+                <source srcset="logo.webp" type="image/webp">
+                <img src="logo.png" alt="Logo" width="56" height="56" class="w-14 h-14 object-contain rounded-xl border border-white/10" onerror="this.style.display='none'">
+            </picture>
             
             <div class="flex flex-col justify-center">
                 <div class="flex items-center">
@@ -113,8 +109,10 @@
 
         <section class="w-full max-w-5xl mx-auto px-6 my-16">
             <div class="glass rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
-                <!-- Optimization: loading="lazy" adds speed to initial page load -->
-                <img src="promo.png" alt="Fast Video Downloader Pro Features" width="1200" height="600" loading="lazy" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/1200x600?text=Promo+Image+Missing'">
+                <picture>
+                    <source srcset="promo.webp" type="image/webp">
+                    <img src="promo.png" alt="Fast Video Downloader Pro Features" width="1200" height="600" loading="lazy" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/1200x600?text=Promo+Image+Missing'">
+                </picture>
             </div>
         </section>
 
@@ -138,13 +136,6 @@
                     <p>Our tool is recognized as a leading <strong class="text-white">TikTok Downloader without Watermark</strong>...</p>
                     <p>Need to save a story or a clip from FB? Our <strong class="text-white">Facebook HD Video Downloader</strong>...</p>
                 </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                    <div class="p-4 bg-white/5 rounded-2xl border border-white/5"><h4 class="text-cyan-400 font-bold mb-1 text-[10px]">NO ADS</h4><p class="text-[8px] text-gray-600 uppercase">Smooth Experience</p></div>
-                    <div class="p-4 bg-white/5 rounded-2xl border border-white/5"><h4 class="text-cyan-400 font-bold mb-1 text-[10px]">SECURE</h4><p class="text-[8px] text-gray-600 uppercase">Privacy Protected</p></div>
-                    <div class="p-4 bg-white/5 rounded-2xl border border-white/5"><h4 class="text-cyan-400 font-bold mb-1 text-[10px]">UNLIMITED</h4><p class="text-[8px] text-gray-600 uppercase">Daily Downloads</p></div>
-                    <div class="p-4 bg-white/5 rounded-2xl border border-white/5"><h4 class="text-cyan-400 font-bold mb-1 text-[10px]">FAST</h4><p class="text-[8px] text-gray-600 uppercase">Cloud Servers</p></div>
-                </div>
             </div>
         </section>
     </main>
@@ -158,10 +149,8 @@
         <p style="font-size: 11px; color: #444; letter-spacing: 5px; font-weight: bold; text-transform: uppercase;">&copy; 2026 Fast Video Downloader Pro.</p>
     </footer>
 
-    <!-- 4. JS Optimization: All scripts at the bottom -->
     <script src="Script.js" defer></script>
     <script>
-    // Logic internal rakha hai jaisa aapka tha
     async function startDownload(videoUrl, filename, btn) {
         const original = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Saving...';
@@ -212,3 +201,4 @@
     </script>
 </body>
 </html>
+
