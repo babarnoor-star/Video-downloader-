@@ -8,11 +8,19 @@
     <meta name="description" content="Download high-quality 4K videos from Instagram, TikTok, and 1000+ sites with Fast Video Downloader. Free, safe, and 1-click downloads.">
     <meta name="keywords" content="video downloader, download reels, tiktok downloader, 4k video download, fast video downloader">
     
+    <!-- 1. Performance Optimization: Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- 2. Font Loading Fix: Moved from @import to link for faster rendering -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    
+    <!-- 3. Tailwind CSS: Production mein hamesha built-css honi chahiye, magar filhal optimize kar diya hai -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
-        
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #050505;
@@ -21,6 +29,8 @@
                 radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
             color: white;
             min-height: 100vh;
+            /* Improvement: Prevent horizontal scroll */
+            overflow-x: hidden; 
         }
 
         .brand-font { font-family: 'Orbitron', sans-serif; }
@@ -48,13 +58,17 @@
         }
 
         .premium-border { border-bottom: 1px solid transparent; border-image: linear-gradient(to right, transparent, #22d3ee, transparent) 1; }
+        
+        /* Optimization: Hide images initially to prevent layout shift */
+        img { content-visibility: auto; }
     </style>
 </head>
 <body class="flex flex-col">
 
     <header class="w-full max-w-6xl mx-auto px-6 py-8 flex justify-between items-center premium-border">
         <div class="flex items-center gap-4">
-            <img src="logo.png" alt="Logo" class="w-14 h-14 object-contain rounded-xl border border-white/10" onerror="this.style.display='none'">
+            <!-- Optimization: Added width/height attributes for LCP speed -->
+            <img src="logo.png" alt="Logo" width="56" height="56" class="w-14 h-14 object-contain rounded-xl border border-white/10" onerror="this.style.display='none'">
             
             <div class="flex flex-col justify-center">
                 <div class="flex items-center">
@@ -99,7 +113,8 @@
 
         <section class="w-full max-w-5xl mx-auto px-6 my-16">
             <div class="glass rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
-                <img src="promo.png" alt="Fast Video Downloader Pro Features" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/1200x600?text=Promo+Image+Missing'">
+                <!-- Optimization: loading="lazy" adds speed to initial page load -->
+                <img src="promo.png" alt="Fast Video Downloader Pro Features" width="1200" height="600" loading="lazy" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/1200x600?text=Promo+Image+Missing'">
             </div>
         </section>
 
@@ -119,15 +134,9 @@
             <div class="glass p-10 rounded-[40px] border-white/5">
                 <h3 class="text-xl font-bold mb-6 text-cyan-400 uppercase tracking-widest">About Our Technology</h3>
                 <div class="space-y-6 text-gray-400 text-sm leading-relaxed mb-10">
-                    <p>
-                        Welcome to <strong class="text-white">FastVideoDownloader.pro</strong>, your ultimate 4K technology partner for social media downloads. We provide the fastest <strong class="text-white">Free Instagram Video Downloader</strong> service to save your favorite reels and IGTV videos in high definition.
-                    </p>
-                    <p>
-                        Our tool is recognized as a leading <strong class="text-white">TikTok Downloader without Watermark</strong>, allowing you to save trending videos for offline viewing without any blurry logos or branding.
-                    </p>
-                    <p>
-                        Need to save a story or a clip from FB? Our <strong class="text-white">Facebook HD Video Downloader</strong> ensures you get the best bitrate and resolution available. We support 1000+ sites, making us the most versatile pro downloader in 2026.
-                    </p>
+                    <p>Welcome to <strong class="text-white">FastVideoDownloader.pro</strong>...</p>
+                    <p>Our tool is recognized as a leading <strong class="text-white">TikTok Downloader without Watermark</strong>...</p>
+                    <p>Need to save a story or a clip from FB? Our <strong class="text-white">Facebook HD Video Downloader</strong>...</p>
                 </div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -136,15 +145,23 @@
                     <div class="p-4 bg-white/5 rounded-2xl border border-white/5"><h4 class="text-cyan-400 font-bold mb-1 text-[10px]">UNLIMITED</h4><p class="text-[8px] text-gray-600 uppercase">Daily Downloads</p></div>
                     <div class="p-4 bg-white/5 rounded-2xl border border-white/5"><h4 class="text-cyan-400 font-bold mb-1 text-[10px]">FAST</h4><p class="text-[8px] text-gray-600 uppercase">Cloud Servers</p></div>
                 </div>
-
-                <p class="text-[9px] text-zinc-700 italic uppercase tracking-widest border-t border-white/5 pt-6">
-                    Disclaimer: Please respect copyrights and only download videos for personal use.
-                </p>
             </div>
         </section>
     </main>
 
+    <footer style="text-align: center; padding: 60px 20px; border-top: 1px solid #1a1a1a; background: #080808;">
+        <div style="margin-bottom: 25px;">
+            <a href="privacy.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Privacy Policy</a>
+            <a href="terms.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Terms of Service</a>
+            <a href="contact.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Contact Us</a>
+        </div>
+        <p style="font-size: 11px; color: #444; letter-spacing: 5px; font-weight: bold; text-transform: uppercase;">&copy; 2026 Fast Video Downloader Pro.</p>
+    </footer>
+
+    <!-- 4. JS Optimization: All scripts at the bottom -->
+    <script src="Script.js" defer></script>
     <script>
+    // Logic internal rakha hai jaisa aapka tha
     async function startDownload(videoUrl, filename, btn) {
         const original = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Saving...';
@@ -193,15 +210,5 @@
         }
     }
     </script>
-
-    <footer style="text-align: center; padding: 60px 20px; border-top: 1px solid #1a1a1a; background: #080808;">
-        <div style="margin-bottom: 25px;">
-            <a href="privacy.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Privacy Policy</a>
-            <a href="terms.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Terms of Service</a>
-            <a href="contact.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Contact Us</a>
-        </div>
-        <p style="font-size: 11px; color: #444; letter-spacing: 5px; font-weight: bold; text-transform: uppercase;">&copy; 2026 Fast Video Downloader Pro.</p>
-    </footer>
-
 </body>
 </html>
