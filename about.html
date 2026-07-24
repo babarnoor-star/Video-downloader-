@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | Fast Video Downloader Pro</title>
+    <meta name="description" content="Learn about Fast Video Downloader Pro — a free tool for saving HD and 4K videos from Instagram, TikTok, YouTube and 1000+ sites.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #050505;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(34, 211, 238, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            color: white;
+            min-height: 100vh;
+        }
+        .brand-font { font-family: 'Orbitron', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .rainbow-text {
+            background: linear-gradient(to right, #FF3D00, #FFD600, #00E676, #00B0FF, #D500F9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+        }
+        .premium-border { border-bottom: 1px solid transparent; border-image: linear-gradient(to right, transparent, #22d3ee, transparent) 1; }
+    </style>
+</head>
+<body class="flex flex-col">
+
+    <header class="w-full max-w-6xl mx-auto px-6 py-8 flex justify-between items-center premium-border">
+        <a href="index.html" class="flex items-center gap-4">
+            <picture>
+                <source srcset="logo.webp" type="image/webp">
+                <img src="logo.png" alt="Logo" width="56" height="56" class="w-14 h-14 object-contain rounded-xl border border-white/10" onerror="this.style.display='none'">
+            </picture>
+            <div class="flex flex-col justify-center">
+                <span class="brand-font text-2xl font-black italic tracking-tighter uppercase">
+                    FAST <span class="text-cyan-400">VIDEO</span>
+                </span>
+                <span class="text-[10px] font-bold text-gray-500 uppercase tracking-[5px] leading-none">Downloader</span>
+            </div>
+        </a>
+        <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-cyan-400 transition-colors">
+            <i class="fa-solid fa-arrow-left mr-2"></i>Home
+        </a>
+    </header>
+
+    <main class="flex-1 flex flex-col items-center px-6 py-16">
+        <h1 class="text-4xl md:text-6xl font-black text-center leading-[0.95] mb-6 tracking-tighter uppercase">
+            About <span class="italic rainbow-text">Fast Video Downloader</span>
+        </h1>
+        <p class="text-gray-400 text-sm text-center max-w-lg mb-16">
+            Why we built this tool, and what you can expect from it.
+        </p>
+
+        <section class="w-full max-w-3xl space-y-8">
+            <div class="glass p-8 md:p-10 rounded-[32px]">
+                <h2 class="text-cyan-400 font-bold uppercase tracking-widest text-sm mb-4">Our Mission</h2>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Saving a video you like shouldn't need an app install, an account, or a wall of ads.
+                    Fast Video Downloader Pro exists to do one thing well: turn a link into a downloadable
+                    file, in the highest quality available, in a few seconds.
+                </p>
+            </div>
+
+            <div class="glass p-8 md:p-10 rounded-[32px]">
+                <h2 class="text-cyan-400 font-bold uppercase tracking-widest text-sm mb-4">How We Work</h2>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    You paste a public video link, our servers fetch the available formats and qualities,
+                    and you choose the one you want. We don't store your videos or require sign-up — the
+                    file goes straight from our server to your device.
+                </p>
+            </div>
+
+            <div class="glass p-8 md:p-10 rounded-[32px]">
+                <h2 class="text-cyan-400 font-bold uppercase tracking-widest text-sm mb-4">A Note on Copyright</h2>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Please only download content you own, have permission to use, or that's covered by
+                    fair use in your country. Respect creators — support them through the platforms
+                    they publish on whenever you can.
+                </p>
+            </div>
+
+            <div class="glass p-8 md:p-10 rounded-[32px]">
+                <h2 class="text-cyan-400 font-bold uppercase tracking-widest text-sm mb-4">Get in Touch</h2>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Questions, feedback, or a broken link to report? Visit our
+                    <a href="contact.html" class="text-cyan-400 underline hover:text-cyan-300">Contact page</a>
+                    — we read every message.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 60px 20px; border-top: 1px solid #1a1a1a; background: #080808;">
+        <div style="margin-bottom: 25px;">
+            <a href="privacy.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Privacy Policy</a>
+            <a href="terms.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Terms of Service</a>
+            <a href="contact.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Contact Us</a>
+        </div>
+        <p style="font-size: 11px; color: #444; letter-spacing: 5px; font-weight: bold; text-transform: uppercase;">&copy; 2026 Fast Video Downloader Pro.</p>
+    </footer>
+
+</body>
+</html>
+
