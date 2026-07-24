@@ -3,23 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Fast Video Downloader</title>
+
+    <title>Contact Us | Fast Video Downloader Pro</title>
+    <meta name="description" content="Get in touch with Fast Video Downloader Pro for support, feedback, or to report a broken link.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; color: #e0e0e0; background: #121212; text-align: center; }
-        .container { max-width: 600px; margin: 60px auto; background: #1e1e1e; padding: 40px; border-radius: 12px; border: 1px solid #ffcc00; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        h1 { color: #ffcc00; }
-        p { color: #b0b0b0; font-size: 1.1rem; }
-        .email { color: #ffcc00; font-weight: bold; font-size: 1.2rem; margin-top: 20px; display: block; }
-        .back-btn { display: inline-block; margin-bottom: 20px; color: #ffcc00; text-decoration: none; font-weight: bold; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #050505;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(34, 211, 238, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            color: white;
+            min-height: 100vh;
+        }
+        .brand-font { font-family: 'Orbitron', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .rainbow-text {
+            background: linear-gradient(to right, #FF3D00, #FFD600, #00E676, #00B0FF, #D500F9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+        }
+        .btn-rainbow {
+            background: linear-gradient(-45deg, #FF3D00, #FFD600, #00E676, #00B0FF, #D500F9);
+            background-size: 400% 400%;
+        }
+        .premium-border { border-bottom: 1px solid transparent; border-image: linear-gradient(to right, transparent, #22d3ee, transparent) 1; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <a href="/" class="back-btn">← Back to Home</a>
-        <h1>Contact Us</h1>
-        <p>Have a question or facing an issue? We'd love to hear from you!</p>
-        <p>Email us at:</p>
-        <span class="email">support babarnoor702@gmail.com</span>
-    </div>
+<body class="flex flex-col">
+
+    <header class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-wrap justify-between items-center gap-4 premium-border">
+        <a href="index.html" class="flex items-center gap-3 sm:gap-4 min-w-0">
+            <picture>
+                <source srcset="logo.webp" type="image/webp">
+                <img src="logo.png" alt="Logo" width="56" height="56" class="w-11 h-11 sm:w-14 sm:h-14 object-contain rounded-xl border border-white/10 flex-shrink-0" onerror="this.style.display='none'">
+            </picture>
+            <div class="flex flex-col justify-center min-w-0">
+                <span class="brand-font text-lg sm:text-2xl font-black italic tracking-tighter uppercase whitespace-nowrap">
+                    FAST <span class="text-cyan-400">VIDEO</span>
+                </span>
+                <span class="text-[8px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-[3px] sm:tracking-[5px] leading-none whitespace-nowrap">Downloader</span>
+            </div>
+        </a>
+        <nav class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <a href="about.html" class="glass px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-gray-300 hover:text-cyan-400 hover:border-cyan-500/30 transition-all whitespace-nowrap">About</a>
+            <a href="index.html" class="glass px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-gray-300 hover:text-cyan-400 hover:border-cyan-500/30 transition-all whitespace-nowrap">Home</a>
+        </nav>
+    </header>
+
+    <main class="flex-1 flex flex-col items-center px-6 py-16">
+        <h1 class="text-4xl md:text-6xl font-black text-center leading-[0.95] mb-6 tracking-tighter uppercase">
+            Get In <span class="italic rainbow-text">Touch</span>
+        </h1>
+        <p class="text-gray-400 text-sm text-center max-w-lg mb-16">
+            Found a bug, have a suggestion, or a link that won't download? Send us a message.
+        </p>
+
+        <section class="w-full max-w-lg">
+            <form action="https://formsubmit.co/babarnoor702@gmail.com" method="POST" class="glass p-8 rounded-[32px] space-y-5">
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2 block">Name</label>
+                    <input type="text" name="name" required
+                        class="w-full bg-black/60 border border-white/5 p-4 rounded-2xl outline-none focus:border-cyan-500/30 transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2 block">Email</label>
+                    <input type="email" name="email" required
+                        class="w-full bg-black/60 border border-white/5 p-4 rounded-2xl outline-none focus:border-cyan-500/30 transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2 block">Message</label>
+                    <textarea name="message" rows="5" required
+                        class="w-full bg-black/60 border border-white/5 p-4 rounded-2xl outline-none focus:border-cyan-500/30 transition-all text-sm resize-none"></textarea>
+                </div>
+                <input type="hidden" name="_subject" value="New message from Fast Video Downloader">
+                <input type="hidden" name="_captcha" value="true">
+
+                <button type="submit" class="btn-rainbow w-full py-5 rounded-2xl font-black text-[11px] uppercase tracking-[4px] text-white">
+                    Send Message
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 60px 20px; border-top: 1px solid #1a1a1a; background: #080808;">
+        <div style="margin-bottom: 25px;">
+            <a href="privacy.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Privacy Policy</a>
+            <a href="terms.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Terms of Service</a>
+            <a href="about.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">About Us</a>
+        </div>
+        <p style="font-size: 11px; color: #444; letter-spacing: 5px; font-weight: bold; text-transform: uppercase;">&copy; 2026 Fast Video Downloader Pro.</p>
+    </footer>
+
 </body>
 </html>
