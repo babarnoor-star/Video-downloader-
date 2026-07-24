@@ -109,6 +109,11 @@
                 </span>
             </div>
         </div>
+
+        <nav class="flex items-center gap-6">
+            <a href="about.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-cyan-400 transition-colors">About</a>
+            <a href="contact.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-cyan-400 transition-colors">Contact</a>
+        </nav>
     </header>
 
     <main class="flex-1 flex flex-col items-center px-6 pt-12 pb-20">
@@ -247,12 +252,10 @@
         resultDiv.classList.add('hidden');
 
         try {
-            const response = await fetch('https://auto-download-all-in-one.p.rapidapi.com/v1/social/autolink', {
+            const response = await fetch('https://fast-download-api.onrender.com/analyze', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'x-rapidapi-host': 'auto-download-all-in-one.p.rapidapi.com',
-                    'x-rapidapi-key': '0733c17d56mshbb4fd563fb1aad0p15cca4jsnb616ddd8461e'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ url: urlInput.value.trim() })
             });
@@ -275,3 +278,4 @@
     </script>
 </body>
 </html>
+
