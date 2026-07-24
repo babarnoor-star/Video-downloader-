@@ -33,6 +33,40 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Fast Video Downloader Pro free to use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, it's completely free with no sign-up required. Paste a link, choose a quality, and download." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which websites are supported?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Over 1000 sites, including Instagram, TikTok, YouTube, Facebook, and Twitter/X." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I download TikTok videos without a watermark?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, TikTok downloads are provided without the watermark overlay." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it legal to download videos this way?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You should only download videos you own, have permission to use, or that fall under fair use in your country. Respect the original creator's rights." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install an app?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No installation needed. Everything runs in your browser." }
+        }
+      ]
+    }
+    </script>
+
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -196,6 +230,50 @@
             </div>
         </section>
 
+        <!-- FAQ: matches the FAQPage schema in <head> -->
+        <section class="mt-24 w-full max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-black text-center mb-12 rainbow-text uppercase italic tracking-tighter">
+                Frequently Asked Questions
+            </h2>
+            <div class="space-y-4">
+                <details class="glass rounded-3xl p-6 group">
+                    <summary class="font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+                        Is Fast Video Downloader Pro free to use?
+                        <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-gray-400 text-xs leading-relaxed mt-4">Yes, it's completely free with no sign-up required. Paste a link, choose a quality, and download.</p>
+                </details>
+                <details class="glass rounded-3xl p-6 group">
+                    <summary class="font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+                        Which websites are supported?
+                        <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-gray-400 text-xs leading-relaxed mt-4">Over 1000 sites, including Instagram, TikTok, YouTube, Facebook, and Twitter/X.</p>
+                </details>
+                <details class="glass rounded-3xl p-6 group">
+                    <summary class="font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+                        Can I download TikTok videos without a watermark?
+                        <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-gray-400 text-xs leading-relaxed mt-4">Yes, TikTok downloads are provided without the watermark overlay.</p>
+                </details>
+                <details class="glass rounded-3xl p-6 group">
+                    <summary class="font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+                        Is it legal to download videos this way?
+                        <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-gray-400 text-xs leading-relaxed mt-4">You should only download videos you own, have permission to use, or that fall under fair use in your country. Respect the original creator's rights.</p>
+                </details>
+                <details class="glass rounded-3xl p-6 group">
+                    <summary class="font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+                        Do I need to install an app?
+                        <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-gray-400 text-xs leading-relaxed mt-4">No installation needed. Everything runs in your browser.</p>
+                </details>
+            </div>
+        </section>
+
         <section class="mt-8 w-full max-w-4xl text-center">
             <h2 class="text-4xl md:text-5xl font-black mb-10 rainbow-text uppercase italic tracking-tighter">
                 Ultimate 4K Video Downloader
@@ -265,16 +343,4 @@
                 resultDiv.classList.remove('hidden');
                 downloadButtons.innerHTML = '';
                 res.medias.forEach((item) => {
-                    const isHD = item.quality.includes('1080') || item.quality.includes('4K');
-                    downloadButtons.innerHTML += `<button onclick="startDownload('${item.url}', 'FastVideo_${item.quality}.mp4', this)" class="w-full py-5 ${isHD ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'bg-white/5 text-white border border-white/10'} rounded-3xl font-black text-[10px] uppercase tracking-widest flex justify-between px-8 items-center group"><span>${item.quality} ${item.extension.toUpperCase()}</span><i class="fa-solid fa-download group-hover:translate-y-1 transition-transform"></i></button>`;
-                });
-                resultDiv.scrollIntoView({ behavior: 'smooth' });
-            } else { alert("Link not found!"); }
-        } catch (err) { alert("API Error!"); } finally {
-            btnText.innerHTML = '<i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Video';
-            btnText.disabled = false;
-        }
-    }
-    </script>
-</body>
-</html>
+                    const isHD = item.quality.includes('1080') |
