@@ -230,6 +230,31 @@
             </div>
         </section>
 
+        <!-- Platform guides: quick links so users aren't confused about how to use each platform -->
+        <section class="w-full max-w-5xl px-6 mb-16">
+            <h2 class="text-2xl md:text-3xl font-black text-center mb-10 rainbow-text uppercase italic tracking-tighter">
+                Step-by-Step Guides
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="instagram-reels-downloader-guide.html" class="glass p-5 rounded-3xl text-center hover:border-cyan-500/30 transition-all">
+                    <i class="fa-brands fa-instagram text-2xl mb-2 text-pink-400"></i>
+                    <p class="text-[10px] font-black uppercase tracking-widest">Instagram</p>
+                </a>
+                <a href="tiktok-video-downloader-guide.html" class="glass p-5 rounded-3xl text-center hover:border-cyan-500/30 transition-all">
+                    <i class="fa-brands fa-tiktok text-2xl mb-2 text-cyan-300"></i>
+                    <p class="text-[10px] font-black uppercase tracking-widest">TikTok</p>
+                </a>
+                <a href="facebook-video-downloader-guide.html" class="glass p-5 rounded-3xl text-center hover:border-cyan-500/30 transition-all">
+                    <i class="fa-brands fa-facebook text-2xl mb-2 text-blue-400"></i>
+                    <p class="text-[10px] font-black uppercase tracking-widest">Facebook</p>
+                </a>
+                <a href="snapchat-video-downloader-guide.html" class="glass p-5 rounded-3xl text-center hover:border-cyan-500/30 transition-all">
+                    <i class="fa-brands fa-snapchat text-2xl mb-2 text-yellow-300"></i>
+                    <p class="text-[10px] font-black uppercase tracking-widest">Snapchat</p>
+                </a>
+            </div>
+        </section>
+
         <!-- FAQ: matches the FAQPage schema in <head> -->
         <section class="mt-24 w-full max-w-3xl">
             <h2 class="text-3xl md:text-4xl font-black text-center mb-12 rainbow-text uppercase italic tracking-tighter">
@@ -302,31 +327,4 @@
             <a href="instagram-reels-downloader-guide.html" style="color: #888; text-decoration: none; margin: 0 15px; font-size: 12px; font-weight: 700; text-transform: uppercase;">Instagram Guide</a>
             <a href="tiktok-video-downloader-guide.html" style="color: #888; text-decoration: none; margin: 0 15px; font-size: 12px; font-weight: 700; text-transform: uppercase;">TikTok Guide</a>
             <a href="facebook-video-downloader-guide.html" style="color: #888; text-decoration: none; margin: 0 15px; font-size: 12px; font-weight: 700; text-transform: uppercase;">Facebook Guide</a>
-            <a href="snapchat-video-downloader-guide.html" style="color: #888; text-decoration: none; margin: 0 15px; font-size: 12px; font-weight: 700; text-transform: uppercase;">Snapchat Guide</a>
-        </div>
-        <div style="margin-bottom: 25px;">
-            <a href="privacy.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Privacy Policy</a>
-            <a href="terms.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Terms of Service</a>
-            <a href="contact.html" style="color: #ffcc00; text-decoration: none; margin: 0 20px; font-size: 16px; font-weight: 900; text-transform: uppercase;">Contact Us</a>
-        </div>
-        <p style="font-size: 11px; color: #444; letter-spacing: 5px; font-weight: bold; text-transform: uppercase;">&copy; 2026 Fast Video Downloader Pro.</p>
-    </footer>
-
-    <script src="Script.js" defer></script>
-    <script>
-    async function startDownload(videoUrl, filename, btn) {
-        const original = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Saving...';
-        const BACKEND_URL = "https://fast-download-api.onrender.com";
-        const finalUrl = `${BACKEND_URL}/download?url=${encodeURIComponent(videoUrl)}&filename=${encodeURIComponent(filename)}`;
-        window.location.href = finalUrl;
-        setTimeout(() => { btn.innerHTML = original; }, 4000);
-    }
-
-    async function analyzeVideo() {
-        const urlInput = document.getElementById('urlInput');
-        const btnText = document.getElementById('btnText');
-        const resultDiv = document.getElementById('result');
-        const downloadButtons = document.getElementById('downloadButtons');
-
-        if (!urlInput.value.trim()) re
+            <a href="snapchat-video-downloader-gu
